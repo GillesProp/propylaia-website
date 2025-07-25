@@ -3,11 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advisory Services - Professional Consulting</title>
+    <title>Advisory Services - Change your vantage point</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .smooth-scroll {
             scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background-image: url('site%20background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(37, 99, 235, 0.8);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         .floating-cta {
             position: fixed;
@@ -130,8 +151,8 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-12 sm:py-16 lg:py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <section id="home" class="hero-bg text-white py-12 sm:py-16 lg:py-20">
+        <div class="hero-content max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">Expert Advisory Services</h2>
             <p class="text-lg sm:text-xl mb-6 sm:mb-8 max-w-3xl mx-auto">Transform your business with strategic guidance from industry experts. We provide comprehensive advisory services to help you achieve sustainable growth and success.</p>
             <button onclick="scrollToSection('contact')" class="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition duration-300">
