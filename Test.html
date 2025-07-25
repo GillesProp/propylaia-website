@@ -1,0 +1,832 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Advisory Services - Professional Consulting&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.smooth-scroll {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scroll-behavior: smooth;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.floating-cta {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>bottom: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>right: 30px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: all 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.floating-cta:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-2px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.service-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.service-card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.nav-link:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #3b82f6;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: fixed;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>z-index: 1000;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: rgba(0, 0, 0, 0.5);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>backdrop-filter: blur(4px);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.modal-content {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin: 5% auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 16px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 90%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 80vh;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>overflow-y: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: modalSlideIn 0.3s ease-out;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes modalSlideIn {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>from {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(-50px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>to {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>opacity: 1;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>transform: translateY(0);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.close {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #aaa;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>float: right;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-size: 28px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: bold;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 20px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.close:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: #000;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="smooth-scroll bg-gray-50 font-sans"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Header --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;header class="bg-white shadow-lg sticky top-0 z-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="flex justify-between items-center py-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Logo --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;!-- Replace 'Big%20square%20propylaia%20copy.jpg' with your actual logo file path --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;img src="your-logo.png" alt="Company Logo" class="w-12 h-12 mr-3 object-contain"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h1 class="text-2xl font-bold text-gray-900"&gt;AdvisePro&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-sm text-gray-600"&gt;Professional Advisory Services&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Navigation --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;nav class="hidden md:flex space-x-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#home" class="nav-link text-gray-700 hover:text-blue-600 font-medium"&gt;Home&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#about" class="nav-link text-gray-700 hover:text-blue-600 font-medium"&gt;About&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium"&gt;Services&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#testimonials" class="nav-link text-gray-700 hover:text-blue-600 font-medium"&gt;Testimonials&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/nav&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Mobile menu button --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button class="md:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100" onclick="toggleMobileMenu()"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"&gt;&lt;/path&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Mobile Navigation --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="mobile-menu" class="hidden md:hidden pb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#home" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2"&gt;Home&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#about" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2"&gt;About&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2"&gt;Services&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#testimonials" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2"&gt;Testimonials&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-2"&gt;Contact&lt;/a&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Hero Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="home" class="bg-gradient-to-br from-blue-600 to-blue-800 text-white py-20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-5xl font-bold mb-6"&gt;Expert Advisory Services&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl mb-8 max-w-3xl mx-auto"&gt;Transform your business with strategic guidance from industry experts. We provide comprehensive advisory services to help you achieve sustainable growth and success.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;button onclick="scrollToSection('contact')" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-100 transition duration-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>Get Started Today</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- About Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="about" class="py-20 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-4xl font-bold text-gray-900 mb-4"&gt;About Our Expertise&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl text-gray-600 max-w-3xl mx-auto"&gt;With over 15 years of combined experience, our team of advisors has helped hundreds of businesses navigate complex challenges and achieve remarkable growth.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Expert Team&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Certified professionals with deep industry knowledge&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Proven Results&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Track record of successful business transformations&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-2"&gt;Custom Solutions&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Tailored strategies for your unique business needs&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Services Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="services" class="py-20 bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-4xl font-bold text-gray-900 mb-4"&gt;Our Advisory Services&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl text-gray-600 max-w-3xl mx-auto"&gt;Comprehensive consulting solutions designed to accelerate your business growth and optimize operations.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Service Card 1 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card bg-white rounded-xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h4v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm8 8a1 1 0 100-2 1 1 0 000 2zm-3-1a1 1 0 11-2 0 1 1 0 012 0zm-2-3a1 1 0 100-2 1 1 0 000 2zm3-1a1 1 0 11-2 0 1 1 0 012 0zm3 1a1 1 0 100-2 1 1 0 000 2z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;Strategic Planning&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Develop comprehensive business strategies that align with your long-term goals and market opportunities.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="openServiceModal('risk')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"&gt;Learn More →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Service Card 2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card bg-white rounded-xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M6 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2V6zM6 14a2 2 0 002-2h8a2 2 0 002 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;Financial Advisory&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Optimize your financial performance with expert guidance on budgeting, forecasting, and investment strategies.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="openServiceModal('financial')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"&gt;Learn More →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Service Card 3 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card bg-white rounded-xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;Operations Consulting&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Streamline your operations and improve efficiency through process optimization and technology integration.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="openServiceModal('operations')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"&gt;Learn More →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Service Card 4 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card bg-white rounded-xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-red-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-red-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;HR &amp; Talent Management&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Build high-performing teams with strategic HR guidance, talent acquisition, and organizational development.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="openServiceModal('hr')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"&gt;Learn More →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Service Card 5 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card bg-white rounded-xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;Digital Transformation&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Navigate the digital landscape with technology strategy, digital marketing, and automation solutions.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="openServiceModal('digital')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"&gt;Learn More →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Service Card 6 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="service-card bg-white rounded-xl p-8 shadow-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-indigo-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-semibold mb-4"&gt;Risk Management&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Identify, assess, and mitigate business risks with comprehensive risk management strategies and compliance guidance.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="openServiceModal('risk')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300"&gt;Learn More →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Testimonials Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="testimonials" class="py-20 bg-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="text-center mb-16"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-4xl font-bold text-gray-900 mb-4"&gt;Client Success Stories&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-xl text-gray-600 max-w-3xl mx-auto"&gt;See how our advisory services have helped businesses achieve remarkable growth and transformation.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Testimonials Carousel --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="relative max-w-4xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="testimonial-carousel overflow-hidden"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="testimonial-track flex transition-transform duration-500 ease-in-out" id="testimonialTrack"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Testimonial 1 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="testimonial-slide w-full flex-shrink-0 px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-gray-50 rounded-xl p-8 text-center max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-blue-600 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>S</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-lg text-gray-700 italic mb-6"&gt;"The strategic planning guidance helped us scale from $1M to $10M in revenue within 18 months. Exceptional expertise and support throughout our growth journey."&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-semibold text-lg"&gt;Sarah Johnson&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-gray-600"&gt;CEO, TechStart Inc.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Testimonial 2 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="testimonial-slide w-full flex-shrink-0 px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-gray-50 rounded-xl p-8 text-center max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-green-600 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>M</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-lg text-gray-700 italic mb-6"&gt;"Their financial advisory services transformed our cash flow management and helped us secure Series A funding successfully. Couldn't have done it without them."&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-semibold text-lg"&gt;Michael Chen&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-gray-600"&gt;Founder, GrowthCorp&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Testimonial 3 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="testimonial-slide w-full flex-shrink-0 px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-gray-50 rounded-xl p-8 text-center max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-purple-600 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>E</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-lg text-gray-700 italic mb-6"&gt;"The operations consulting completely streamlined our processes, reducing costs by 30% while improving quality and efficiency. Amazing results in just 6 months."&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-semibold text-lg"&gt;Emily Rodriguez&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-gray-600"&gt;COO, InnovateLab&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Testimonial 4 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="testimonial-slide w-full flex-shrink-0 px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-gray-50 rounded-xl p-8 text-center max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-red-600 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>D</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-lg text-gray-700 italic mb-6"&gt;"The HR consulting transformed our company culture and reduced turnover by 60%. Our team is more engaged and productive than ever before."&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-semibold text-lg"&gt;David Park&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-gray-600"&gt;VP of Operations, ScaleUp Solutions&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Testimonial 5 --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="testimonial-slide w-full flex-shrink-0 px-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div class="bg-gray-50 rounded-xl p-8 text-center max-w-2xl mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div class="flex items-center justify-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div class="bg-yellow-600 text-white w-16 h-16 rounded-full flex items-center justify-center font-bold text-xl"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>L</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;p class="text-lg text-gray-700 italic mb-6"&gt;"Digital transformation seemed overwhelming until we worked with AdvisePro. They guided us through every step and increased our online revenue by 200%."&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;h4 class="font-semibold text-lg"&gt;Lisa Thompson&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;p class="text-gray-600"&gt;Marketing Director, RetailPlus&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Navigation Arrows --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="previousTestimonial()" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition duration-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"&gt;&lt;/path&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="nextTestimonial()" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-3 hover:bg-gray-50 transition duration-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"&gt;&lt;/path&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Dots Indicator --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex justify-center mt-8 space-x-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="goToTestimonial(0)" class="testimonial-dot w-3 h-3 rounded-full bg-blue-600 transition duration-300"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="goToTestimonial(1)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition duration-300"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="goToTestimonial(2)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition duration-300"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="goToTestimonial(3)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition duration-300"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button onclick="goToTestimonial(4)" class="testimonial-dot w-3 h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition duration-300"&gt;&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Contact Section --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;section id="contact" class="py-20 bg-blue-600 text-white"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-4xl font-bold mb-6"&gt;Ready to Transform Your Business?&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl mb-8 max-w-2xl mx-auto"&gt;Schedule a consultation with our expert advisors and discover how we can help you achieve your business goals.&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Calendly Widget Placeholder --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-xl p-8 text-gray-900 max-w-md mx-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;svg class="w-16 h-16 text-blue-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-2xl font-bold mb-2"&gt;Schedule Your Consultation&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600 mb-6"&gt;Book a free 30-minute strategy session with our senior advisors&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Demo Calendly Button --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;button onclick="openCalendly()" class="w-full bg-blue-600 text-white py-4 px-6 rounded-lg font-semibold text-lg hover:bg-blue-700 transition duration-300 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Book Free Consultation</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/button&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="text-sm text-gray-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mb-2"&gt;✓ No commitment required&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="mb-2"&gt;✓ Discuss your specific challenges&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;✓ Get actionable insights&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;!-- Alternative Contact Info --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="mt-12 grid md:grid-cols-3 gap-8 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-semibold mb-2"&gt;Email Us&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;contact@advisepro.com&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-semibold mb-2"&gt;Call Us&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;+1 (555) 123-4567&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="bg-blue-500 w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="font-semibold mb-2"&gt;Visit Us&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p&gt;123 Business Ave, Suite 100&lt;br&gt;New York, NY 10001&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Footer --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;footer class="bg-gray-900 text-white py-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid md:grid-cols-4 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Company Info --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;!-- Replace 'your-logo.png' with your actual logo file path --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;img src="your-logo.png" alt="Company Logo" class="w-8 h-8 mr-3 object-contain"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 class="text-xl font-bold"&gt;AdvisePro&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-400 mb-4"&gt;Professional advisory services helping businesses achieve sustainable growth and success.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Services --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="text-lg font-semibold mb-4"&gt;Services&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="space-y-2 text-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#services" class="hover:text-white transition duration-300"&gt;Strategic Planning&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#services" class="hover:text-white transition duration-300"&gt;Financial Advisory&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#services" class="hover:text-white transition duration-300"&gt;Operations Consulting&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#services" class="hover:text-white transition duration-300"&gt;HR &amp; Talent Management&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Legal --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="text-lg font-semibold mb-4"&gt;Legal&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="space-y-2 text-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#" class="hover:text-white transition duration-300"&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#" class="hover:text-white transition duration-300"&gt;Terms of Service&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#" class="hover:text-white transition duration-300"&gt;Cookie Policy&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#" class="hover:text-white transition duration-300"&gt;Disclaimer&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;&lt;a href="#" class="hover:text-white transition duration-300"&gt;Professional Standards&lt;/a&gt;&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Contact --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 class="text-lg font-semibold mb-4"&gt;Contact&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;ul class="space-y-2 text-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;📧 contact@advisepro.com&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;📞 +1 (555) 123-4567&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;li&gt;📍 123 Business Ave, Suite 100&lt;br&gt;New York, NY 10001&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p&gt;&amp;copy; 2024 AdvisePro. All rights reserved. | Licensed Advisory Services | Professional Consulting Firm&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="mt-2 text-sm"&gt;Regulated by [Regulatory Body] | License #12345 | Professional Liability Insurance Coverage&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Service Modal --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="serviceModal" class="modal"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="modal-content"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;span class="close" onclick="closeServiceModal()"&gt;&amp;times;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div id="modalContent"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;!-- Dynamic content will be inserted here --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;!-- Floating CTA Button --&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="scrollToSection('contact')" class="floating-cta bg-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:bg-blue-700 font-semibold"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>📅 Book Consultation</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/button&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Smooth scrolling function</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function scrollToSection(sectionId) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.getElementById(sectionId).scrollIntoView({</p>
+<p class="p1"><span class="Apple-converted-space">                </span>behavior: 'smooth'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Mobile menu toggle</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function toggleMobileMenu() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const mobileMenu = document.getElementById('mobile-menu');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>mobileMenu.classList.toggle('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Calendly demo function</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function openCalendly() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>alert('Demo: In a real implementation, this would open your Calendly widget or redirect to your booking page. You can integrate Calendly by adding their embed code or using their popup widget.');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Hide floating CTA when in contact section</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.addEventListener('scroll', function() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const contactSection = document.getElementById('contact');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const floatingCTA = document.querySelector('.floating-cta');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const contactRect = contactSection.getBoundingClientRect();</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (contactRect.top &lt;= window.innerHeight &amp;&amp; contactRect.bottom &gt;= 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>floatingCTA.style.opacity = '0';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>floatingCTA.style.pointerEvents = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>floatingCTA.style.opacity = '1';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>floatingCTA.style.pointerEvents = 'auto';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Close mobile menu when clicking on links</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.querySelectorAll('#mobile-menu a').forEach(link =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>link.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>document.getElementById('mobile-menu').classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Service modal functionality</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const serviceDetails = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>strategic: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "Strategic Planning",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon: `&lt;svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path fill-rule="evenodd" d="M4 5a2 2 0 012-2v1a1 1 0 102 0V3h4v1a1 1 0 102 0V3a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm8 8a1 1 0 100-2 1 1 0 000 2zm-3-1a1 1 0 11-2 0 1 1 0 012 0zm-2-3a1 1 0 100-2 1 1 0 000 2zm3-1a1 1 0 11-2 0 1 1 0 012 0zm3 1a1 1 0 100-2 1 1 0 000 2z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: "Our strategic planning service helps you develop comprehensive business strategies that align with your long-term goals and market opportunities.",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>features: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Market Analysis &amp; Competitive Intelligence",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"SWOT Analysis &amp; Risk Assessment",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Goal Setting &amp; KPI Development",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Resource Allocation Planning",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Implementation Roadmaps",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Performance Monitoring Systems"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>benefits: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Clear direction for business growth",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Improved decision-making processes",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Better resource utilization",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Increased competitive advantage"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>financial: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "Financial Advisory",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon: `&lt;svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path d="M6 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2V6zM6 14a2 2 0 002-2h8a2 2 0 002 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: "Optimize your financial performance with expert guidance on budgeting, forecasting, and investment strategies tailored to your business needs.",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>features: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Financial Planning &amp; Budgeting",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Cash Flow Management",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Investment Strategy Development",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Cost Optimization Analysis",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Financial Risk Assessment",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Funding &amp; Capital Structure Advisory"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>benefits: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Improved cash flow management",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Better financial decision-making",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Reduced financial risks",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhanced profitability"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>operations: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "Operations Consulting",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon: `&lt;svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: "Streamline your operations and improve efficiency through process optimization and technology integration solutions.",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>features: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Process Analysis &amp; Optimization",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Workflow Design &amp; Implementation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Technology Integration",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Quality Management Systems",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Supply Chain Optimization",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Performance Metrics &amp; KPIs"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>benefits: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Increased operational efficiency",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Reduced operational costs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Improved quality control",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhanced productivity"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>hr: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "HR &amp; Talent Management",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon: `&lt;svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: "Build high-performing teams with strategic HR guidance, talent acquisition, and organizational development solutions.",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>features: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Talent Acquisition Strategy",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Performance Management Systems",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Employee Development Programs",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Compensation &amp; Benefits Design",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Organizational Culture Development",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"HR Policy &amp; Compliance"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>benefits: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Improved employee retention",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhanced team performance",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Better organizational culture",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Reduced HR compliance risks"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>digital: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "Digital Transformation",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon: `&lt;svg class="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: "Navigate the digital landscape with technology strategy, digital marketing, and automation solutions for modern businesses.",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>features: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Digital Strategy Development",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Technology Assessment &amp; Selection",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Process Automation",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Digital Marketing Strategy",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Data Analytics &amp; Insights",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Change Management Support"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>benefits: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Increased digital competitiveness",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Improved customer experience",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhanced operational efficiency",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Better data-driven decisions"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>risk: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: "Risk Management",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>icon: `&lt;svg class="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;path fill-rule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/svg&gt;`,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: "Identify, assess, and mitigate business risks with comprehensive risk management strategies and compliance guidance.",</p>
+<p class="p1"><span class="Apple-converted-space">                </span>features: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Risk Assessment &amp; Analysis",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Compliance Management",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Business Continuity Planning",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Crisis Management Strategies",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Insurance &amp; Coverage Review",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Regulatory Compliance Support"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>benefits: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Reduced business vulnerabilities",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Better regulatory compliance",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Improved crisis preparedness",</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>"Enhanced business resilience"</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function openServiceModal(serviceType) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById('serviceModal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const modalContent = document.getElementById('modalContent');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const service = serviceDetails[serviceType];</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>modalContent.innerHTML = `</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="flex items-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${service.icon}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h2 class="text-3xl font-bold text-gray-900"&gt;${service.title}&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-lg text-gray-600 mb-8"&gt;${service.description}&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="grid md:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-xl font-semibold mb-4 text-gray-900"&gt;What We Offer:&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;ul class="space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>${service.features.map(feature =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span class="text-gray-700"&gt;${feature}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                        </span></p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;h3 class="text-xl font-semibold mb-4 text-gray-900"&gt;Key Benefits:&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;ul class="space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>${service.benefits.map(benefit =&gt; `</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;li class="flex items-start"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                            </span>&lt;path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;/svg&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                        </span>&lt;span class="text-gray-700"&gt;${benefit}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>`).join('')}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                    </span></p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="mt-8 p-6 bg-blue-50 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="text-lg font-semibold mb-3 text-blue-900"&gt;Ready to Get Started?&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-blue-700 mb-4"&gt;Schedule a free consultation to discuss how our ${service.title.toLowerCase()} services can help your business.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button onclick="closeServiceModal(); scrollToSection('contact');" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>Book Free Consultation</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>modal.style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.body.style.overflow = 'hidden';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function closeServiceModal() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById('serviceModal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>modal.style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>document.body.style.overflow = 'auto';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Close modal when clicking outside of it</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.onclick = function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const modal = document.getElementById('serviceModal');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (event.target === modal) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>closeServiceModal();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Close modal with Escape key</p>
+<p class="p1"><span class="Apple-converted-space">        </span>document.addEventListener('keydown', function(event) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (event.key === 'Escape') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>closeServiceModal();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Testimonial Carousel Functionality</p>
+<p class="p1"><span class="Apple-converted-space">        </span>let currentTestimonial = 0;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const totalTestimonials = 5;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function updateTestimonialCarousel() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const track = document.getElementById('testimonialTrack');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dots = document.querySelectorAll('.testimonial-dot');</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Move the carousel</p>
+<p class="p1"><span class="Apple-converted-space">            </span>track.style.transform = `translateX(-${currentTestimonial * 100}%)`;</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Update dots</p>
+<p class="p1"><span class="Apple-converted-space">            </span>dots.forEach((dot, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (index === currentTestimonial) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dot.classList.remove('bg-gray-300');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dot.classList.add('bg-blue-600');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dot.classList.remove('bg-blue-600');</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>dot.classList.add('bg-gray-300');</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function nextTestimonial() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentTestimonial = (currentTestimonial + 1) % totalTestimonials;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateTestimonialCarousel();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function previousTestimonial() {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateTestimonialCarousel();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>function goToTestimonial(index) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>currentTestimonial = index;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>updateTestimonialCarousel();</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Auto-advance testimonials every 5 seconds</p>
+<p class="p1"><span class="Apple-converted-space">        </span>setInterval(nextTestimonial, 5000);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;script&gt;(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'964adb96e10e0259',t:'MTc1MzQzODEyNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&amp;&amp;(document.onreadystatechange=e,c())}}}})();&lt;/script&gt;&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
