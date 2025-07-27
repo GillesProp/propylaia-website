@@ -18,7 +18,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
             position: relative;
         }
         .hero-bg::before {
@@ -48,6 +47,11 @@
             .floating-cta {
                 bottom: 30px;
                 right: 30px;
+            }
+        }
+        @media (min-width: 768px) {
+            .hero-bg {
+                background-attachment: fixed;
             }
         }
         .floating-cta:hover {
