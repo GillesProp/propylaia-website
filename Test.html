@@ -131,8 +131,8 @@
             padding: 0;
             border-radius: 16px;
             width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
+            max-width: 900px;
+            max-height: 90dvh;
             overflow-y: auto;
             animation: modalSlideIn 0.3s ease-out;
         }
@@ -656,157 +656,243 @@
 
         // Service modal functionality
         const serviceDetails = {
-            strategy: {
-                title: "Problématiques Stratégiques et Alignement Opérationnel",
+           strategy: {
                 icon: ` <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                            <path d="M12 12m-11 0a11 11 0 1 0 22 0a11 11 0 1 0 -22 0"/>
-                            <g transform="rotate(25 12 12)">
+                          <path d="M12 12m-11 0a11 11 0 1 0 22 0a11 11 0 1 0 -22 0"/>
+                          <g transform="rotate(25 12 12)">
                             <path d="M12 5l2.5 5l-2.5 -1l-2.5 1z" fill="#60a5fa"/>
                             <path d="M12 19l-2.5 -5l2.5 1l2.5 -1z" fill="#60a5fa"/>
-                              </g>
+                          </g>
                         </svg>`,
-                description: "J'aide les fondateurs et dirigeants à prendre de la hauteur par rapport aux opérations pour mieux apprehender et crystaliser leur vision, à tester leurs modèles et à aligner leur plan de croissance avec des objectifs concrets et mesurables. Mon approche combine diagnostic critique, projections financières, et stress-testing stratégique pour anticiper les virages clés et réduire les angles morts.",
-                features: [
-                    "Market Analysis & Competitive Intelligence",
+                title: {
+                  fr: "Problématiques Stratégiques et Alignement Opérationnel",
+                  en: "Strategic Challenges & Operational Alignment"
+                },
+                description: {
+                  fr: "J'aide les fondateurs et dirigeants à prendre de la hauteur par rapport aux opérations pour mieux appréhender et cristalliser leur vision, tester leurs modèles et aligner leurs plans de croissance avec des objectifs concrets et mesurables. Mon approche combine diagnostic critique, projections financières et stress-testing stratégique pour anticiper les virages clés et réduire les angles morts.",
+                  en: "I help founders and executives gain perspective on operations to better understand and crystallize their vision, test their models, and align growth plans with measurable, actionable objectives. My approach combines critical diagnostics, financial projections, and strategic stress-testing to anticipate key turning points and minimize blind spots—much like a GP assessing the overall health of a business."
+                },
+                features: {
+                  fr: [
+                    "Analyse marché et veille concurrentielle",
+                    "Évaluation des risques et mitigation",
+                    "Définition des objectifs & développement de KPIs",
+                    "Planification de l’allocation des ressources",
+                    "Feuilles de route pour la mise en oeuvre",
+                    "Systèmes de pilotage de la performance et Business Intelligence"
+                  ],
+                  en: [
+                    "Market & Competitive Analysis",
                     "SWOT Analysis & Risk Assessment",
                     "Goal Setting & KPI Development",
                     "Resource Allocation Planning",
-                    "Implementation Roadmaps",
+                    "Roadmaps for Implementation",
                     "Performance Monitoring Systems"
-                ],
-                benefits: [
+                  ]
+                },
+                benefits: {
+                  fr: [
+                    "Une direction éclairée",
+                    "Des processus décisionnels améliorés",
+                    "Une meilleure allocation des ressources",
+                    "Un positionnement concurrentiel renforcé"
+                  ],
+                  en: [
                     "Clear direction for business growth",
-                    "Improved decision-making processes",
-                    "Better resource utilization",
-                    "Increased competitive advantage"
-                ]
-            },
+                    "Improved decision-making capabilities",
+                    "Better resource allocation",
+                    "Increased competitive positioning"
+                  ]
+                }
+              },
             transition: {
-                title: "Direction de Transition",
-                icon: `<svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4z"/>
-                    <path d="M6 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2V6zM6 14a2 2 0 002-2h8a2 2 0 002 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4z"/>
-                </svg>`,
-                description: "Optimize your financial performance with expert guidance on budgeting, forecasting, and investment strategies tailored to your business needs.",
-                features: [
-                    "Financial Planning & Budgeting",
-                    "Cash Flow Management",
-                    "Investment Strategy Development",
-                    "Cost Optimization Analysis",
-                    "Financial Risk Assessment",
-                    "Funding & Capital Structure Advisory"
-                ],
-                benefits: [
-                    "Improved cash flow management",
-                    "Better financial decision-making",
-                    "Reduced financial risks",
-                    "Enhanced profitability"
-                ]
-            },
+                icon: `<svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>`,
+                title: {
+                  fr: "Direction de Transition",
+                  en: "Interim Leadership"
+                },
+                description: {
+                  fr: "J’assume temporairement des fonctions dirigeantes clés pour aider les entreprises à traverser des phases critiques. Que ce soit pour gérer un changement, gérer une crise, mettre en place une levé de fonds ou mettre en œuvre de nouvelles stratégies, mon expérience internationale et pluridisciplinaire me permet d'agir vite et d’assurer une transition fluide et efficace pendant les périodes de transformation.",
+                  en: "I temporarily take on key executive roles to help businesses navigate critical phases. Whether it’s managing change, crisis management, raising funds, or implementing new strategies, my international and multidisciplinary experience enables me to act quickly and ensure a smooth and effective transition during periods of transformation."
+                },
+                features: {
+                  fr: [
+                    "Management de crise et gestion des risques",
+                    "Gestion du changement",
+                    "Implémentation de nouvelles stratégies",
+                    "Lien entre le CA et les opérations"
+                  ],
+                  en: [
+                    "Risk management and crisis handling",
+                    "Transformation management",
+                    "Implementation of strategic initiatives",
+                    "Swift execution on board's behalf"
+                  ]
+                },
+                benefits: {
+                  fr: [
+                    "Expérience externe",
+                    "Continuité",
+                    "Transition réfléchie et étalée dans le temps",
+                    "Stabilité organisationnelle"
+                  ],
+                  en: [
+                    "External experience",
+                    "Continuity",
+                    "Thoughtful and planned transition",
+                    "Organisational stability"
+                  ]
+                }
+              },
             administration: {
-                title: "Conseil d'Administration",
                 icon: `<svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"/>
                     <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/>
                 </svg>`,
-                description: "Streamline your operations and improve efficiency through process optimization and technology integration solutions.",
-                features: [
-                    "Process Analysis & Optimization",
-                    "Workflow Design & Implementation",
-                    "Technology Integration",
-                    "Quality Management Systems",
-                    "Supply Chain Optimization",
-                    "Performance Metrics & KPIs"
-                ],
-                benefits: [
-                    "Increased operational efficiency",
-                    "Reduced operational costs",
-                    "Improved quality control",
-                    "Enhanced productivity"
-                ]
-            },
-            mentoring: {
-                title: "Startup Monitoring",
-                icon: `<svg class="w-8 h-8 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                </svg>`,
-                description: "Build high-performing teams with strategic HR guidance, talent acquisition, and organizational development solutions.",
-                features: [
-                    "Talent Acquisition Strategy",
-                    "Performance Management Systems",
-                    "Employee Development Programs",
-                    "Compensation & Benefits Design",
-                    "Organizational Culture Development",
-                    "HR Policy & Compliance"
-                ],
-                benefits: [
-                    "Improved employee retention",
-                    "Enhanced team performance",
-                    "Better organizational culture",
-                    "Reduced HR compliance risks"
-                ]
-            }
+                title: {
+                  fr: "Conseil d'Administration",
+                  en: "Board Advisory"
+                },
+                description: {
+                  fr: "En tant qu'administrateur externe, je fournis une perspective indépendante et honnête aux conseils d’administration. Mon rôle : poser les bonnes questions, challenger les certitudes, éclairer les choix structurants, et défendre les intérêts long terme de l'entreprise.",
+                  en: "As an independent board member, I provide an honest and unbiased perspective to boards. My role is to ask the right questions, challenge assumptions, clarify strategic choices, and advocate for the company’s long-term interests."
+                },
+                features: {
+                  fr: [
+                    "Stratégie à long terme et prise de décisions",
+                    "Évaluation des risques et des opportunités",
+                    "Animation de comités de travail",
+                    "Analyse de la gouvernance et du leadership"
+                  ],
+                  en: [
+                    "Long term strategy and decision-making",
+                    "Risk and opportunity assessment",
+                    "Working committees management",
+                    "Governance and leadership evaluation"
+                  ]
+                },
+                benefits: {
+                  fr: [
+                    "Une perspective extérieure objective",
+                    "Clarté stratégique et indépendance pour la prise de décision",
+                    "Une gouvernance renforcée et alignée avec les objectifs long terme"
+                  ],
+                  en: [
+                    "An objective, external perspective",
+                    "Strategic clarity and independance decision-making",
+                    "Strengthened governance aligned with long term goals"
+                  ]
+                }
+              },
+           mentoring: {
+                icon: `<svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>`,
+                title: {
+                  fr: "Startup Mentoring",
+                  en: "Startup Mentoring",
+                },
+                description: {
+                  fr: "Mentorat opérationnel pour fondateurs : cadrage des priorités, structuration des rituels de pilotage, préparation de levées, coaching leadership et décisions clés — avec un regard exigeant mais bienveillant.",
+                  en: "Hands-on mentoring for founders: focus and prioritization, operating cadences, fundraising prep, leadership coaching, and support on critical decisions — candid and supportive.",
+                },
+                features: {
+                  fr: [
+                    "Priorisation & cadrage des objectifs",
+                    "Rituels de pilotage & métriques",
+                    "Préparation levée de fonds (deck, métriques, récit)",
+                    "Coaching leadership & communication",
+                  ],
+                  en: [
+                    "Goal framing & prioritization",
+                    "Operating cadences & metrics",
+                    "Fundraising prep (deck, metrics, narrative)",
+                    "Leadership & communication coaching",
+                  ],
+                },
+                benefits: {
+                  fr: [
+                    "Clarté sur les priorités",
+                    "Accélération de l’exécution",
+                    "Meilleure préparation des jalons clés",
+                  ],
+                  en: [
+                    "Sharper priorities",
+                    "Faster execution",
+                    "Stronger readiness for key milestones",
+                  ],
+                },
+              },
         };
 
-        function openServiceModal(serviceType) {
-            const modal = document.getElementById('serviceModal');
-            const modalContent = document.getElementById('modalContent');
-            const service = serviceDetails[serviceType];
-            
-            modalContent.innerHTML = `
-                <div class="p-8">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
-                            ${service.icon}
-                        </div>
-                        <h2 class="text-3xl font-bold text-gray-900">${service.title}</h2>
-                    </div>
-                    
-                    <p class="text-lg text-gray-600 mb-8">${service.description}</p>
-                    
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold mb-4 text-gray-900">What We Offer:</h3>
-                            <ul class="space-y-2">
-                                ${service.features.map(feature => `
-                                    <li class="flex items-start">
-                                        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
-                                        </svg>
-                                        <span class="text-gray-700">${feature}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-xl font-semibold mb-4 text-gray-900">Key Benefits:</h3>
-                            <ul class="space-y-2">
-                                ${service.benefits.map(benefit => `
-                                    <li class="flex items-start">
-                                        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-                                        </svg>
-                                        <span class="text-gray-700">${benefit}</span>
-                                    </li>
-                                `).join('')}
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 p-6 bg-blue-50 rounded-lg">
-                        <h4 class="text-lg font-semibold mb-3 text-blue-900">Ready to Get Started?</h4>
-                        <p class="text-blue-700 mb-4">Schedule a free consultation to discuss how our ${service.title.toLowerCase()} services can help your business.</p>
-                        <button onclick="closeServiceModal(); scrollToSection('contact');" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
-                            Book Free Consultation
-                        </button>
-                    </div>
-                </div>
-            `;
-            
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
+function getLang() {
+  return document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
+}
+
+function openServiceModal(serviceType) {
+  const lang = getLang();
+  const s = serviceDetails[serviceType];
+  const modal = document.getElementById('serviceModal');
+  const modalContent = document.getElementById('modalContent');
+
+  const featuresHtml = (s.features[lang] || [])
+    .map(f => `
+      <li class="flex items-start">
+        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+        </svg>
+        <span class="text-gray-700">${f}</span>
+      </li>`).join('');
+
+  const benefitsHtml = (s.benefits[lang] || [])
+    .map(b => `
+      <li class="flex items-start">
+        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+        </svg>
+        <span class="text-gray-700">${b}</span>
+      </li>`).join('');
+
+  modalContent.innerHTML = `
+    <div class="p-8">
+      <div class="flex items-center mb-6">
+        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+          ${s.icon}
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">${s.title[lang]}</h2>
+      </div>
+
+      <p class="text-lg text-gray-600 mb-8">${s.description[lang]}</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-900">${lang === 'fr' ? "Où j'interviens:" : 'Where I come in:'}</h3>
+          <ul class="space-y-2">${featuresHtml}</ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-900">${lang === 'fr' ? 'Bénéfices clés :' : 'Key Benefits:'}</h3>
+          <ul class="space-y-2">${benefitsHtml}</ul>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 bg-blue-50 rounded-lg">
+        <h4 class="text-lg font-semibold mb-3 text-blue-900">${lang === 'fr' ? 'On démarre ?' : 'Ready to get started?'}</h4>
+        <p class="text-blue-700 mb-4">
+          ${lang === 'fr'
+            ? `Planifiez une consultation pour discuter de la façon dont je peux aider.`
+            : `Schedule a consultation to discuss how I can help you.`}
+        </p>
+        <button onclick="closeServiceModal(); scrollToSection('contact');"
+          class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+          ${lang === 'fr' ? 'Allons-y !' : "Let's Go !"}
+        </button>
+      </div>
+    </div>`;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
 
         function closeServiceModal() {
             const modal = document.getElementById('serviceModal');
