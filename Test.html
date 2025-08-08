@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Votre Partenaire de Réflexion Stratégique.</title>
     <link rel="icon" type="image/x-icon" href="favicon.png">
+    
+      <script>
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll('[data-en]');
+      elements.forEach(el => {
+        const raw = el.getAttribute(`data-${lang}`) || '';
+      // convert the literal characters "\n" into real newlines
+      const normalized = raw.replace(/\\n/g, '\n');
+      el.textContent = normalized; // keep using textContent (safe)
+    });
+      document.documentElement.lang = lang;
+      localStorage.setItem('preferredLang', lang);
+      updateToggleButtons(lang);
+    }
+
+  function updateToggleButtons(currentLang) {
+  // find all buttons
+  document.querySelectorAll('.lang-toggle').forEach(btn => {
+    if (currentLang === 'en') {
+      btn.textContent = '🇫🇷';
+      btn.setAttribute('aria-label','Passer au français');
+      btn.onclick = () => setLanguage('fr');
+    } else {
+      btn.textContent = '🇬🇧';
+      btn.setAttribute('aria-label','Switch to English');
+      btn.onclick = () => setLanguage('en');
+    }
+  });
+}
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(lang);
+    });
+  </script>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .smooth-scroll {
@@ -135,25 +171,18 @@
              class="w-18 h-12 mr-3 object-contain rounded-md">
         <div>
           <h1 class="text-2xl font-bold text-gray-900">Propylaia</h1>
-          <p class="text-sm text-gray-600">Sparring Partner Stratégique</p>
+          <p class="text-sm text-gray-600" data-en="Strategic Sparring Partner" data-fr="Sparring Partner Stratégique" >Sparring Partner Stratégique</p>
         </div>
       </div>
 
       <!-- Desktop nav + toggle -->
       <nav class="hidden md:flex items-center space-x-8">
        
-        <a href="#home"     class="nav-link text-gray-700 hover:text-blue-600 font-medium">Accueil</a>
+        <a href="#home"     class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-en="Home" data-fr="Accueil" >Accueil</a>
         <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Services</a>
-        <a href="#about"    class="nav-link text-gray-700 hover:text-blue-600 font-medium">À propos</a>
+        <a href="#about"    class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-en="About" data-fr="À Propos">À propos</a>
         <a href="#contact"  class="nav-link text-gray-700 hover:text-blue-600 font-medium">Contact</a>
-      <button id="lang-toggle"
-                class="w-8 h-8 bg-gradient-to-br from-blue-600 to-red-600 
-                       text-white rounded-full 
-                       hover:from-blue-700 hover:to-red-700 
-                       transition-colors duration-200 
-                       flex items-center justify-center 
-                       text-sm font-semibold">
-          En
+      <button class="lang-toggle w-12 h-12 …"></button>
       </button>
       </nav>
 
@@ -170,24 +199,16 @@
         </button>
 
         <!-- Mobile toggle -->
-        <button id="lang-toggle"
-                class="w-5 h-5 bg-gradient-to-br from-blue-600 to-red-600 
-                       text-white rounded-full 
-                       hover:from-blue-700 hover:to-red-700 
-                       transition-colors duration-200 
-                       flex items-center justify-center 
-                       text-xs font-semibold">
-          En
-        </button>
+        <button class="lang-toggle w-8 h-8 …"></button>
       </div>
     </div>
 
     <!-- Mobile Navigation -->
     <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-200 mt-4 pt-4">
       <div class="flex flex-col space-y-3">
-        <a href="#home"     class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" onclick="closeMobileMenu()">Home</a>
+        <a href="#home"     class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" data-en="Home" data-fr="Accueil"  onclick="closeMobileMenu()">Home</a>
         <a href="#about"    class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" onclick="closeMobileMenu()">About</a>
-        <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" onclick="closeMobileMenu()">Services</a>
+        <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" data-en="About" data-fr="À Propos" onclick="closeMobileMenu()">Services</a>
         <a href="#contact"  class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" onclick="closeMobileMenu()">Contact</a>
       </div>
     </div>
@@ -198,14 +219,17 @@
 <!-- Hero Section -->
 <section id="home" class="hero-bg text-white min-h-[80dvh] flex items-center justify-start py-12 sm:py-16 lg:py-20">
     <div class="space-y-6 hero-content max-w-4xl mx-auto px-4 sm:px-4 lg:px-2">
-        <h2 class="leading-relaxed text-2xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-left">
-            Un regard externe expérimenté,<br>Un accompagnement engagé,<br>Au service de votre vision
+        <h2 class="leading-relaxed text-2xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-left whitespace-pre-line"
+            data-en="An external experienced POV, \nAn engaged partnership,\nAn efficient sparring partner."
+            data-fr="Un regard externe expérimenté, \nUn accompagnement engagé, \n Un sparring partner efficace." ></h2>
         </h2>
-        <p class="text-sm sm:text-xl text-gray-200 mb-2 sm:mb-4 max-w-2xl text-left">
-            Je me place en sparring partner de fondateurs et dirigeants afin de révéler et affiner leur vision la plus ambitieuse et ensemble dessiner une stratégie claire et cohérente, incorporant les ingrédients technologiques et humains nécessaires à sa réalisation.
+        <p class="text-sm sm:text-xl text-gray-200 mb-2 sm:mb-4 max-w-2xl text-left"
+            data-en="Sparring with founders and execs help them refine and crystalise their most ambitious vision yet.Together we then can plan a clear coherent strategy to execute using relevant new technology and human required resources"
+            data-fr="Je me place en sparring partner de fondateurs et dirigeants afin de révéler et affiner leur vision la plus ambitieuse et ensemble dessiner une stratégie claire et cohérente, incorporant les ingrédients technologiques et humains nécessaires à sa réalisation.">
         </p>
-        <button onclick="scrollToSection('contact')" class="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold text-base sm:text-lg hover:bg-gray-100 transition duration-300">
-            Parlons nous!
+        <button onclick="scrollToSection('services')" class="bg-white text-blue-600 px-6 sm:px-8 py-1.5 sm:py-1.5 rounded-2xl font-semibold text-base sm:text-lg hover:bg-gray-100 transition duration-300"
+            data-en="Learn more"
+            data-fr="En savoir plus">
         </button>
     </div>
 </section>
@@ -216,8 +240,8 @@
     <section id="services" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Mes Interventions</h2>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">"Business généraliste" à dominante financière,<BR>j'interviens dans les moments clés de croissance ou de transformation.</p>
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4" data-en="Services" data-fr="Mes Interventions"></h2></h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto whitespace-pre-line" data-en="Like a GP, but for business,\nI come in during key growth or transformation phases,\nto identify challenges, to design tailored solutions,\nand to mobilize the necessary resources." data-fr="&quot;Business généraliste&quot; à dominante financière,\nj'interviens dans les moments clés de croissance ou de transformation\npour identifier les défis, concevoir les solutions adaptées\net mobiliser les ressources nécessaires."></p></p>
             </div>
             
             <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
@@ -578,8 +602,9 @@
     </div>
 
     <!-- Floating CTA Button -->
-    <button onclick="scrollToSection('contact')" class="floating-cta bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg hover:bg-blue-700 font-semibold text-sm sm:text-base">
-        📅 Let's talk
+    <button onclick="scrollToSection('contact')" class="floating-cta bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
+        data-en="📅  Let's talk"
+        data-fr="📅  Échangeons !">
     </button>
 
     <script>
