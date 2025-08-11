@@ -4,6 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Propylaia | Votre Partenaire de Réflexion Stratégique.</title>
+
+<script>
+(() => {
+  const titleEl = document.querySelector('title');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  let timer = null;
+  let pos = 0;
+
+  function getBaseTitle(lang) {
+    // Use your data-en/data-fr on <title>, else current title
+    const t = titleEl?.getAttribute(`data-${lang}`) || document.title || '';
+    return ('   ' + t + '   '); // padding so the loop looks nicer
+  }
+
+  function startTicker(lang) {
+    if (prefersReduced) {                // accessibility
+      document.title = getBaseTitle(lang).trim();
+      return;
+    }
+    const base = getBaseTitle(lang);
+    clearInterval(timer);
+    pos = 0;
+    timer = setInterval(() => {
+      pos = (pos + 1) % base.length;
+      document.title = base.slice(pos) + base.slice(0, pos);
+    }, 250); // speed (ms). Try 200–350
+  }
+
+  function stopTicker() { clearInterval(timer); timer = null; }
+
+  // Pause when tab hidden to save CPU
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopTicker();
+    else startTicker(document.documentElement.lang || 'fr');
+  });
+
+  // Start on load
+  document.addEventListener('DOMContentLoaded', () => {
+    startTicker(document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr');
+  });
+
+  // Expose a hook so your language toggle can restart the ticker
+  window.__updateTitleTickerLang = (lang) => startTicker(lang);
+})();
+</script>
+
+    
     <link rel="icon" type="image/x-icon" href="favicon.png">
     
       <script>
