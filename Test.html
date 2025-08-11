@@ -43,6 +43,47 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+    
+      .no-save {
+          -webkit-user-select: none;
+          user-select: none;
+          -webkit-touch-callout: none; /* iOS long-press menu */
+          -webkit-user-drag: none;
+        }
+        
+      .about-bg {
+          position: relative;
+          overflow: hidden;
+        }
+        /* Blurred background image layer */
+        .about-bg::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: url('PATH_TO_YOUR_ABOUT_IMAGE.jpg'); /* ← replace */
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          filter: blur(10px);
+          transform: scale(1.08); /* hides blur edges */
+          background-attachment: scroll; /* mobile/tablet safe */
+          z-index: 0;
+        }
+        /* Blue tint overlay */
+        .about-bg::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(37, 99, 235, 0.35);
+          z-index: 0;
+        }
+        /* Enable parallax for larger screens (avoid iPad glitches) */
+        @media (min-width: 1024px) {
+          .about-bg::before {
+            background-attachment: fixed;
+          }
+         }
+    
         .smooth-scroll {
             scroll-behavior: smooth;
         }
@@ -311,47 +352,72 @@
     </section>
 
     
-    <!-- About Section -->
-    <section id="about" class="py-12 sm:py-16 lg:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 sm:mb-16">
-                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">About Our Expertise</h2>
-                <p class="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">With over 15 years of combined experience, our team of advisors has helped hundreds of businesses navigate complex challenges and achieve remarkable growth.</p>
-            </div>
-            
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <div class="text-center">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Expert Team</h3>
-                    <p class="text-gray-600">Certified professionals with deep industry knowledge</p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Proven Results</h3>
-                    <p class="text-gray-600">Track record of successful business transformations</p>
-                </div>
-                
-                <div class="text-center">
-                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold mb-2">Custom Solutions</h3>
-                    <p class="text-gray-600">Tailored strategies for your unique business needs</p>
-                </div>
-            </div>
+<!-- ABOUT ME SECTION -->
+<section id="about" class="about-bg text-white py-12 sm:py-16 lg:py-20">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Title -->
+    <div class="text-center mb-10 sm:mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold"
+          data-en="About"
+          data-fr="À propos">À propos</h2>
+    </div>
+
+    <!-- Content grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start">
+      <!-- Left: photo (1/3 on md+) -->
+      <div class="md:col-span-1">
+        <div class="no-save relative rounded-xl overflow-hidden shadow-xl bg-white/10 backdrop-blur-sm">
+          <div
+            class="aspect-[3/4] max-h-[40dvh] bg-center bg-cover"
+            style="background-image:url('PATH_TO_YOUR_PORTRAIT.jpg');"
+            oncontextmenu="return false"
+            aria-label="Portrait"
+            role="img"
+          ></div>
+          <div class="absolute inset-0" oncontextmenu="return false" aria-hidden="true"></div>
         </div>
-    </section>
+      </div>
+
+      <!-- Right: text (2/3 on md+) -->
+      <div class="md:col-span-2 space-y-6 text-base sm:text-lg leading-relaxed text-gray-100">
+        <!-- Block 1 -->
+        <div class="space-y-1">
+          <div class="font-semibold" data-en="Role" data-fr="Rôle">Rôle</div>
+          <p
+            data-en="My name is Gilles Lazerges and I’m a strategic advisor and business “sparring partner” with nearly 20 years of international experience in finance, corporate strategy, and entrepreneurial ventures. My role is to help founders, CEOs, and leadership teams navigate pivotal moments — whether that means refining a vision, stress-testing a strategy, or steering through transformation."
+            data-fr="Je m'appelle Gilles Lazerges, conseiller en stratégie et sparring partner de confiance pour fondateurs et dirigeants, avec près de 20 ans d’expérience internationale en finance, stratégie et entrepreneuriat.
+Mon rôle ? Aider les leaders à voir plus loin, décider plus vite et agir avec clarté dans les moments clés.">
+            Je suis un sparring partner stratégique qui aide les fondateurs et dirigeants à prendre du recul, clarifier leur vision la plus ambitieuse et la transformer en plan d’action cohérent et réalisable.
+          </p>
+        </div>
+
+        <!-- Block 2 -->
+        <div class="space-y-1">
+          <div class="font-semibold" data-en="A quick journey" data-fr="Approche">Approche</div>
+          <p
+            data-en="I started in finance with BNP Paribas in Tokyo, then Macquarie in Hong Kong, before moving to Chicago to launch ventures and earn my CAIA charter. Today, from my base in Bordeaux, I work globally — from shaping the growth of African healthcare leaders to guiding tech and creative startups in Europe and beyond."
+            data-fr="j’ai débuté en finance chez BNP Paribas à Tokyo, puis chez Macquarie à Hong Kong, avant de m’installer à Chicago pour lancer des projets entrepreneuriaux et obtenir la certification CAIA. Aujourd’hui basé à Bordeaux, j’interviens dans le monde entier : de l’essor d’acteurs de santé en Afrique à l’accompagnement de startups technologiques et créatives en Europe et au-delà.">
+            Mon approche combine diagnostic critique, modélisation financière, et alignement humain & technologique pour lever les blocages et accélérer l’exécution avec des résultats mesurables.
+          </p>
+          </div>
+
+        <!-- Block 3 -->
+        <div class="space-y-1">
+          <div class="font-semibold" data-en="What defines me" data-fr="Ce qui me définit">Expérience</div>
+          <p
+            data-en="A global perspective grounded in real-world execution, a candid yet collaborative style, and a commitment to turning ambitious visions into actionable strategies. I’m here to challenge your thinking, sharpen your focus, and help you build lasting impact."
+            data-fr="une vision globale ancrée dans l’exécution concrète, un style franc mais collaboratif, et un engagement constant pour transformer des ambitions fortes en stratégies actionnables. Mon objectif : challenger vos idées, affiner votre vision et vous aider à créer un impact durable.
+
+">
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
     
     <!-- Testimonials Section -->
     <section id="testimonials" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
@@ -858,7 +924,7 @@ function openServiceModal(serviceType) {
   modalContent.innerHTML = `
     <div class="p-8">
       <div class="flex items-center mb-6">
-        <div class="bg-gray-100 w-16 h-16 rounded-lg flex items-center justify-center mr-4">
+        <div class="flex items-center justify-center mr-4">
           ${s.icon}
         </div>
         <h2 class="text-3xl font-bold text-gray-900">${s.title[lang]}</h2>
