@@ -507,8 +507,8 @@ Mon rôle ? Aider les leaders à voir plus loin, décider plus vite et agir avec
     <!-- Contact Section -->
     <section id="contact" class="py-12 sm:py-16 lg:py-20 bg-blue-600 text-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6">Ready to Transform Your Business?</h2>
-            <p class="text-lg sm:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto">Schedule a consultation with our expert advisors and discover how we can help you achieve your business goals.</p>
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6" date-en="Ready to spar ?" data-fr="Prêt à sparrer?" >Ready to Transform Your Business?</h2>
+            <p class="text-lg sm:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto" data-en="Schedule a quick call now to share your thoughts." data-fr="Réservez un créneau pour commencer à échanger.">Schedule a consultation with our expert advisors and discover how we can help you achieve your business goals.</p>
             
             <!-- Calendly Widget Placeholder -->
             <div class="bg-white rounded-xl p-6 sm:p-8 text-gray-900 max-w-md mx-auto">
@@ -520,18 +520,16 @@ Mon rôle ? Aider les leaders à voir plus loin, décider plus vite et agir avec
                     <p class="text-sm sm:text-base text-gray-600 mb-6">Book a free 30-minute strategy session with our senior advisors</p>
                 </div>
                 
-                <!-- Demo Calendly Button -->
-                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/gilles-lazerges/30min'});return false;" class="w-full bg-blue-600 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition duration-300 mb-4">
-                    Book Free Consultation
-                </button>
-                
                 <div class="text-xs sm:text-sm text-gray-500">
-                    <p class="mb-2">✓ No commitment required</p>
-                    <p class="mb-2">✓ Discuss your specific challenges</p>
-                    <p>✓ Get actionable insights</p>
+                    <p class="mb-2" data-en="✓ No commitment required" data-fr="✓ C'est gratuit !" >✓ No commitment</p>
+                    <p class="mb-2" data-en="✓ Discuss your specific challenges" data-fr="Partagez vos problématiques" >✓challenges</p>
+                    <p data-en="✓ Get actionable insights" data-fr="✓ Repartez avec un point de vue extérieur" >✓actionable insights</p>
                 </div>
+                
+                <!-- Calendly widget -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/gilles-lazerges/30min?hide_event_type_details=1" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                
             </div>
             
             <!-- Alternative Contact Info -->
