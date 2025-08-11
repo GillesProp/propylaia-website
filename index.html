@@ -521,7 +521,9 @@ Mon rôle ? Aider les leaders à voir plus loin, décider plus vite et agir avec
                 </div>
                 
                 <!-- Demo Calendly Button -->
-                <button onclick="openCalendly()" class="w-full bg-blue-600 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition duration-300 mb-4">
+                <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+                <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+                <button onclick="Calendly.initPopupWidget({url: 'https://calendly.com/gilles-lazerges/30min'});return false;" class="w-full bg-blue-600 text-white py-3 sm:py-4 px-6 rounded-lg font-semibold text-base sm:text-lg hover:bg-blue-700 transition duration-300 mb-4">
                     Book Free Consultation
                 </button>
                 
