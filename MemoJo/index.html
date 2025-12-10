@@ -1,7 +1,957 @@
-linear-gradient(
-        45deg,
-        var(--purple-dark) 0%,
-        var(--purple-dark) 37%,
-        var(--purple-mid) 72%,
-        var(--purple-bright) 100%
-      );
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propylaia | Votre Partenaire de Réflexion Stratégique.</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    
+      <script>
+    function setLanguage(lang) {
+      const elements = document.querySelectorAll('[data-en]');
+      elements.forEach(el => {
+        const raw = el.getAttribute(`data-${lang}`) || '';
+      // convert the literal characters "\n" into real newlines
+      const normalized = raw.replace(/\\n/g, '\n');
+      el.textContent = normalized; // keep using textContent (safe)
+    });
+      document.documentElement.lang = lang;
+      localStorage.setItem('preferredLang', lang);
+      updateToggleButtons(lang);
+    }
+
+  function updateToggleButtons(currentLang) {
+  // find all buttons
+  document.querySelectorAll('.lang-toggle').forEach(btn => {
+    if (currentLang === 'en') {
+      btn.textContent = '🇫🇷';
+      btn.setAttribute('aria-label','Passer au français');
+      btn.onclick = () => setLanguage('fr');
+    } else {
+      btn.textContent = '🇬🇧';
+      btn.setAttribute('aria-label','Switch to English');
+      btn.onclick = () => setLanguage('en');
+    }
+  });
+}
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const lang = localStorage.getItem('preferredLang') || 'en';
+      setLanguage(lang);
+    });
+  </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    
+      .no-save {
+          -webkit-user-select: none;
+          user-select: none;
+          -webkit-touch-callout: none; /* iOS long-press menu */
+          -webkit-user-drag: none;
+        }
+        
+      .about-bg {
+          position: relative;
+          overflow: hidden;
+        }
+        /* Blurred background image layer */
+        .about-bg::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background-image: url(images/About_bg.jpeg); 
+          background-size: cover;
+          background-position: center;
+          background-repeat: no-repeat;
+          filter: blur(5px);
+          transform: scale(1.08); /* hides blur edges */
+          background-attachment: scroll; /* mobile/tablet safe */
+          z-index: 0;
+        }
+        /* Blue tint overlay */
+        .about-bg::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(37, 99, 235, 0.35);
+          z-index: 0;
+        }
+        
+        /* Enable parallax for larger screens (avoid iPad glitches) */
+        @media (min-width: 1024px) {
+          .about-bg::before {
+            background-attachment: fixed;
+          }
+         }
+    
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .hero-bg {
+            background-image: url('site%20background.png');
+            min-height: 80dvh;
+            display: flex;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            position: relative;
+        }
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(37, 99, 235, 0.4);
+            backdrop-filter: blur(4px);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            justify-content: start;
+            align-items: left;
+            z-index: 2;
+        }
+        .floating-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        @media (min-width: 640px) {
+            .floating-cta {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+        @media (min-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+        @media (max-width: 1920px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+        .floating-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #3b82f6;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90dvh;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 20px;
+        }
+        .close:hover {
+            color: #000;
+        }
+    </style>
+</head>
+<body class="smooth-scroll bg-gray-50 font-sans">
+    <!-- Header -->
+<header class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="Logo_rectangle_small.jpeg" alt="Company Logo"
+             class="w-18 h-12 mr-3 object-contain rounded-md">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">Propylaia</h1>
+          <p class="text-sm text-gray-600" data-en="Strategic Sparring Partner" data-fr="Sparring Partner Stratégique" >Sparring Partner Stratégique</p>
+        </div>
+      </div>
+
+      <!-- Desktop nav + toggle -->
+      <nav class="hidden md:flex items-center space-x-8">
+       
+        <a href="#home"     class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-en="Home" data-fr="Accueil" >Accueil</a>
+        <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium">Services</a>
+        <a href="#about"    class="nav-link text-gray-700 hover:text-blue-600 font-medium" data-en="About" data-fr="À Propos">À propos</a>
+        <a href="#contact"  class="nav-link text-gray-700 hover:text-blue-600 font-medium">Contact</a>
+      <button class="lang-toggle w-12 h-12 …"></button>
+      </button>
+      </nav>
+
+      <!-- Mobile toggle + menu button -->
+      <div class="md:hidden flex items-center space-x-4">
+    
+        <!-- Hamburger -->
+        <button class="p-2 rounded-md text-gray-700 hover:bg-gray-100"
+                onclick="toggleMobileMenu()">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- Mobile toggle -->
+        <button class="lang-toggle w-8 h-8 …"></button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-gray-200 mt-4 pt-4">
+      <div class="flex flex-col space-y-3">
+        <a href="#home"     class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" data-en="Home" data-fr="Accueil"  onclick="closeMobileMenu()">Home</a>
+          <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" onclick="closeMobileMenu()">Services</a>
+        <a href="#about"    class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" data-en="About" data-fr="À Propos" onclick="closeMobileMenu()">About</a>
+        <a href="#contact"  class="nav-link text-gray-700 hover:text-blue-600 font-medium py-3 px-4 rounded-lg hover:bg-gray-50 transition duration-300" onclick="closeMobileMenu()">Contact</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- Hero Section -->
+<section id="home" class="hero-bg text-white min-h-[80dvh] flex items-center justify-start py-12 sm:py-16 lg:py-20">
+    <div class="space-y-6 hero-content max-w-4xl mx-auto px-4 sm:px-4 lg:px-2">
+        <h2 class="leading-relaxed text-2xl sm:text-4xl lg:text-6xl font-bold mb-4 sm:mb-6 text-left whitespace-pre-line"
+            data-en="An external, experienced POV, \nAn engaged partnership,\nAn effective sparring partner."
+            data-fr="Un regard externe expérimenté, \nUn accompagnement engagé, \n Un sparring partner efficace." ></h2>
+        </h2>
+        <p class="text-sm sm:text-xl text-gray-200 mb-2 sm:mb-4 max-w-2xl text-left"
+            data-en="Sparring with founders and executives helps them refine and crystallize their most ambitious vision. We then collaboratively plan a clear and coherent strategy for execution, leveraging relevant new technologies and the necessary human resources."
+            data-fr="Je me positionne en tant que sparring partner des fondateurs et dirigeants afin de révéler et affiner leur vision la plus ambitieuse. Ensemble, nous dessinons une stratégie claire et cohérente, intégrant les ressources technologiques et humaines nécessaires à sa réalisation.">
+        </p>
+        <button onclick="scrollToSection('services')" class="bg-white text-blue-600 px-6 sm:px-8 py-1.5 sm:py-1.5 rounded-2xl font-semibold text-base sm:text-lg hover:bg-gray-100 transition duration-300"
+            data-en="Learn more"
+            data-fr="En savoir plus">
+        </button>
+    </div>
+</section>
+
+
+
+    <!-- Services Section -->
+    <section id="services" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4" data-en="Services" data-fr="Mes Interventions"></h2></h2>
+                <p class="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto whitespace-pre-line" data-en="Like a GP, but for your business,\nI come in during key growth or transformation phases,\nto identify challenges, to design tailored solutions,\nand to mobilize the necessary resources." data-fr="&quot;Business généraliste&quot; à dominante financière,\nj'interviens dans les moments clés de croissance ou de transformation\npour identifier les défis, concevoir les solutions adaptées\net mobiliser les ressources nécessaires."></p></p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6 sm:gap-8">
+                
+                <!-- Service Card 1 -->
+               <a href="#strategy" onclick="openServiceModal('strategy')" class="service-card bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto transition duration-300">
+                <!-- <div class="service-card bg-white rounded-xl p-8 shadow-lg"> -->
+                    <div class="bg-green-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                       <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <path d="M12 12m-11 0a11 11 0 1 0 22 0a11 11 0 1 0 -22 0"/>
+                            <g transform="rotate(25 12 12)">
+                            <path d="M12 5l2.5 5l-2.5 -1l-2.5 1z" fill="#60a5fa"/>
+                            <path d="M12 19l-2.5 -5l2.5 1l2.5 -1z" fill="#60a5fa"/>
+                              </g>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold justify-center mb-4 text-center whitespace-pre-line" data-en="Strategic Challenges and\nOperational Alignment" data-fr="Problématiques Stratégiques et Alignement Opérationnel"></h3></h3>
+                    <p class="text-gray-600 mb-4" data-en="Identify roadblocks, create clarity, set a course, and define priorities to achieve THE vision." data-fr="Identifier les blocages, donner du sens, un cap et définir les priorités pour atteindre LA vision."></p></p>
+                    <button onclick="openServiceModal('strategy')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300" data-en="Learn more →" data-fr="En savoir plus →"></button></button>
+                <!-- </div> -->
+               </a>
+                
+                <!-- Service Card 2 -->
+               <a href="#transition" onclick="openServiceModal('transition')" class="service-card bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto transition duration-300">              
+              <!--  <div class="service-card bg-white rounded-xl p-8 shadow-lg"> -->
+                    <div class="bg-blue-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center" data-en="Interim Leadership" data-fr="Direction de Transition"></h3></h3>
+                    <p class="text-gray-600 mb-6" data-en="Temporarily assume key functions to help transition through critical phases." data-fr="Assumer temporairement des fonctions clés pour franchir un cap."></p></p>
+                    <button onclick="openServiceModal('transition')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300" data-en="Learn more →" data-fr="En savoir plus →"></button>
+                <!-- </div>-->
+               </a>
+                
+                <!-- Service Card 3 -->
+               <a href="#administration" onclick="openServiceModal('administration')" class="service-card bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto transition duration-300">              
+                <!-- <div class="service-card bg-white rounded-xl p-8 shadow-lg"> -->
+                    <div class="bg-purple-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-6 h-6 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"/>
+                            <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center" data-en="Board Advisory" data-fr="Conseil d'Administration"></h3></h3>
+                    <p class="text-gray-600 mb-6" data-en="Provide strategic distance, honesty, and clarity with an independent external perspective." data-fr="Apporter recul, honnêteté et clarté stratégique avec un regard extérieur indépendant."></p></p>
+                    <button onclick="openServiceModal('administration')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300" data-en="Learn more →" data-fr="En savoir plus →"></button>
+                <!-- </div> -->
+               </a>
+                
+                <!-- Service Card 4 -->
+                <a href="#mentoring" onclick="openServiceModal('mentoring')" class="service-card bg-white rounded-xl p-8 shadow-lg max-w-md mx-auto transition duration-300">
+                <!-- <div class="service-card bg-white rounded-xl p-8 shadow-lg"> -->
+                    <div class="bg-yellow-100 w-12 h-12 rounded-lg flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 text-center">Startup Mentoring</h3>
+                    <p class="text-gray-600 mb-6" data-en="Offer a supportive yet demanding perspective with guidance during crucial moments." data-fr="Apporter un regard bienveillant mais exigeant et un support dans les moments cruciaux."></p></p>
+                    <button onclick="openServiceModal('mentoring')" class="text-blue-600 font-semibold hover:text-blue-800 transition duration-300" data-en="Learn more →" data-fr="En savoir plus →"></button>
+                <!-- </div> -->
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+<!-- ABOUT ME SECTION -->
+<section id="about" class="about-bg text-white py-12 sm:py-16 lg:py-20">
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Title -->
+    <div class="text-center mb-10 sm:mb-14">
+      <h2 class="text-3xl sm:text-4xl font-bold"
+          data-en="About"
+          data-fr="À propos">À propos</h2>
+    </div>
+
+    <!-- Content grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 items-start">
+      <!-- Left: photo (1/3 on md+) -->
+      <div class="md:col-span-1 self-center mx-auto">
+        <div class="no-save relative inline-block w-fit rounded-xl overflow-hidden shadow-xl bg-white/10 backdrop-blur-sm mx-auto">
+          <div
+            class="aspect-[3/4] h-[40dvh] bg-center bg-cover"
+            style="background-image:url(images/portrait_2.jpeg);"
+            oncontextmenu="return false"
+            aria-label="Portrait"
+            role="img"
+          >
+          </div>
+          <div class="absolute inset-0" oncontextmenu="return false" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Right: text (2/3 on md+) -->
+      <div class="md:col-span-2 space-y-6 text-base sm:text-lg leading-relaxed text-gray-100">
+        <!-- Block 1 -->
+        <div class="space-y-1">
+            <p
+            data-en="My name is Gilles Lazerges and I’m a strategic advisor and business “sparring partner” with nearly 20 years of international experience in finance, corporate strategy, and entrepreneurial ventures. My role is to help founders, CEOs, and leadership teams navigate pivotal moments — whether that means refining a vision, stress-testing a strategy, or steering through transformation."
+            data-fr="Je m'appelle Gilles Lazerges, conseiller en stratégie et sparring partner de confiance pour fondateurs et dirigeants, avec près de 20 ans d’expérience internationale en finance, stratégie et entrepreneuriat.
+Mon rôle ? Aider les leaders à voir plus loin, décider plus vite et agir avec clarté dans les moments clés.">
+          </p>
+        </div>
+
+        <!-- Block 2 -->
+        <div class="space-y-1">
+          <div class="font-semibold text-[1.1em]" data-en="A quick journey" data-fr="Mon parcours en bref">Parcours</div>
+          <p
+            data-en="I started in finance with BNP Paribas in Tokyo, then Macquarie in Hong Kong, before moving to Chicago to launch ventures and earn my CAIA charter. Today, from my base in Bordeaux, I work globally — from shaping the growth of African healthcare leaders to guiding tech and creative startups in Europe and beyond."
+            data-fr="j’ai débuté en finance chez BNP Paribas à Tokyo, puis chez Macquarie à Hong Kong, avant de m’installer à Chicago pour lancer des projets entrepreneuriaux et obtenir la certification CAIA. Aujourd’hui basé à Bordeaux, j’interviens dans le monde entier : de l’essor d’acteurs de santé en Afrique à l’accompagnement de startups technologiques et créatives en Europe et au-delà.">
+          </p>
+          </div>
+
+        <!-- Block 3 -->
+        <div class="space-y-1">
+          <div class="font-semibold text-[1.1em]" data-en="What defines me" data-fr="Ce qui me définit">Expérience</div>
+          <p
+            data-en="A global perspective grounded in real-world execution, a candid yet collaborative style, and a commitment to turning ambitious visions into actionable strategies. I’m here to challenge your thinking, sharpen your focus, and help you build lasting impact."
+            data-fr="une vision globale ancrée dans l’exécution concrète, un style franc mais collaboratif, et un engagement constant pour transformer des ambitions fortes en stratégies actionnables. Mon objectif : challenger vos idées, affiner votre vision et vous aider à créer un impact durable.">
+          </p>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-12 sm:py-16 lg:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4" data-en="They trusted me." data-fr="Ils m'ont fait confiance." ></h2>
+            </div>
+            
+            <!-- Testimonials Carousel -->
+            <div class="relative max-w-4xl mx-auto">
+                <div class="testimonial-carousel overflow-hidden">
+                    <div class="testimonial-track flex transition-transform duration-700 ease-in-out" id="testimonialTrack">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-slide w-full flex-shrink-0 px-2 sm:px-4">
+                            <div class="bg-gray-50 rounded-xl p-6 sm:p-8 text-center max-w-2xl mx-auto">
+                                <div class="flex items-center justify-center mb-4 sm:mb-6">
+                                  <a
+                                    href="https://logarythm.fr/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >
+                                    <img
+                                      src="images/Loga_Clem.png"
+                                      alt="Clément Dattée"
+                                      class="w-full h-full"
+                                      loading="lazy"
+                                      decoding="async"
+                                        >
+                                  </a>
+                                </div>
+                                <p class="text-base sm:text-lg text-gray-700 italic mb-4 sm:mb-6" data-en='"With sharp strategic analysis and a comprehensive vision, Gilles helped Logarythm structure itself and organize the entire financial dimension in line with our strategic plan. More than just an advisor, Gilles has been a true catalyst for our vision, offering unwavering support and consistently insightful analysis. A real asset for a founder."' data-fr=' "Avec une analyse stratégique juste et une vision d’ensemble,
+Gilles a aidé Logarythm à se structurer et à organiser toute la dimension financière en lien avec notre plan stratégique. Plus qu’un conseiller, Gilles a été un véritable catalyseur de vision, avec un soutien sans faille et une analyse toujours pertinente. \nUn véritable atout pour un président"'>Your text</p>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg">Clément Dattée</h4>
+                                    <p class="text-sm sm:text-base text-gray-600">CEO & founder, Logarythm Paris (France).</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Testimonial 2 -->
+                         <div class="testimonial-slide w-full flex-shrink-0 px-2 sm:px-4">
+                            <div class="bg-gray-50 rounded-xl p-6 sm:p-8 text-center max-w-2xl mx-auto">
+                                <div class="flex items-center justify-center mb-4 sm:mb-6">
+                                  <a
+                                    href="https://www.facebook.com/centrediagnostic/?locale=fr_FR"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    >
+                                    <img
+                                      src="images/Loyce_Cdl.png"
+                                      alt="Loyce Olympio"
+                                      class="w-full h-full"
+                                      loading="lazy"
+                                      decoding="async"
+                                        >
+                                  </a>
+                                </div>
+                                <p class="text-base sm:text-lg text-gray-700 italic mb-4 sm:mb-6" data-en='"My collaboration with Gilles is a constant source of inspiration, enriching every entrepreneurial challenge with stimulating ideas and initiatives.
+He provides effective support, combining rigor and relevance, which strengthens the clarity of our strategic decisions.
+His insight and ability to see the broader spectrum contribute directly to the smooth running and long-term sustainability of our business"' data-fr='"Ma collaboration avec Gilles est une source d’inspiration continue, nourrissant chaque défi entrepreneurial d’idées et d’initiatives stimulantes.
+Il apporte un soutien efficace, combinant rigueur et pertinence, qui renforce la clarté de nos décisions stratégiques.
+Sa lucidité et sa capacité à prendre de la hauteur contribuent directement à la bonne marche et à la pérennité de notre business."' >"Your text"</p>
+                                <div>
+                                    <h4 class="font-semibold text-base sm:text-lg">Loyce Olympio</h4>
+                                    <p class="text-sm sm:text-base text-gray-600">CEO & founder, Centre Diagnostic Libreville (Gabon).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button onclick="previousTestimonial()" class="absolute left-2 sm:left-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 sm:p-3 hover:bg-gray-50 transition duration-300 z-10">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <button onclick="nextTestimonial()" class="absolute right-2 sm:right-0 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 sm:p-3 hover:bg-gray-50 transition duration-300 z-10">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Dots Indicator -->
+                <div class="flex justify-center mt-6 sm:mt-8 space-x-2">
+                    <button onclick="goToTestimonial(0)" class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-blue-600 transition duration-300"></button>
+                    <button onclick="goToTestimonial(1)" class="testimonial-dot w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-gray-300 hover:bg-gray-400 transition duration-300"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 sm:py-16 lg:py-20 bg-blue-600 text-white">
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6" data-en="Ready to spar?" data-fr="Prêt à sparrer ?" >Ready to Transform Your Business?</h2>
+            <p class="text-lg sm:text-xl mb-6 sm:mb-8 max-w-2xl mx-auto" data-en="Schedule a quick call now to share your thoughts." data-fr="Réservez un créneau pour commencer à échanger." >business goals.</p>
+            
+            <!-- Calendly Widget Placeholder -->
+            <div class="bg-green-100 rounded-xl p-6 sm:p-8 text-gray-900 max-w-6xl shadow-lg mx-auto">
+                <div class="mb-6">
+                    <svg class="w-12 h-12 sm:w-16 sm:h-16 text-blue-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"/>
+                    </svg>
+                    <h3 class="text-xl sm:text-2xl font-bold mb-2" data-en="Schedule Your first call" data-fr="Réservez notre première conversation" >Schedule Your Consultation</h3>
+                </div>
+                
+                <div class="text-xs sm:text-sm text-gray-500">
+                    <p class="mb-2" data-en="✓ No commitment required" data-fr="✓ C'est gratuit !" >✓ No commitment</p>
+                    <p class="mb-2" data-en="✓ Discuss your specific challenges" data-fr="Partagez vos problématiques" >✓challenges</p>
+                    <p class="mb-4"data-en="✓ Get actionable insights" data-fr="✓ Repartez avec un point de vue extérieur" >✓actionable insights</p>
+                </div>
+                
+                <!-- Calendly widget -->
+                <div class="rounded-xl calendly-inline-widget" data-url="https://calendly.com/gilles-lazerges/30min?hide_event_type_details=1" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="Logo_rectangle_small.jpeg" alt="Propylaia" class="w-8 h-8 mr-3 object-contain">
+                        <h3 class="text-xl font-bold">Propylaia</h3>
+                    </div>
+                    <p class="text-gray-400 mb-4" data-en="Business and Strategy sparring partner helping businesses achieve sustainable growth and success." data-fr="Conseil et Stratégie | Sparring Partner pour atteindre votre vision." >Advisory Services</p>
+                </div>
+                
+                <!-- Services -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#services" class="hover:text-white transition duration-300">Strategy Solutions</a></li>
+                        <li><a href="#services" class="hover:text-white transition duration-300">Transition Leadership</a></li>
+                        <li><a href="#services" class="hover:text-white transition duration-300">Board Advisory</a></li>
+                        <li><a href="#services" class="hover:text-white transition duration-300">Startup Mentoring</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Legal 
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Disclaimer</a></li>
+                        <li><a href="#" class="hover:text-white transition duration-300">Professional Standards</a></li>
+                    </ul>
+                </div> -->
+                
+                <!-- Contact 
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📧 contact@advisepro.com</li>
+                        <li>📞 +1 (555) 123-4567</li>
+                        <li>📍 123 Business Ave, Suite 100<br>New York, NY 10001</li>
+                    </ul>
+                </div> 
+            </div> -->
+    
+            </div>
+        </div>      
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Propylaia. All rights reserved. | Business Advisory Firm</p>
+            </div>
+        
+
+    </footer>
+
+    <!-- Service Modal -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeServiceModal()">&times;</span>
+            <div id="modalContent">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating CTA Button -->
+    <button onclick="scrollToSection('contact')" class="floating-cta bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full shadow-lg hover:bg-blue-700 font-semibold text-sm sm:text-base"
+        data-en="📅  Let's talk"
+        data-fr="📅  Échangeons !">
+    </button>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Close mobile menu
+        function closeMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.add('hidden');
+        }
+
+        // Hide floating CTA when in contact section
+        window.addEventListener('scroll', function() {
+            const contactSection = document.getElementById('contact');
+            const floatingCTA = document.querySelector('.floating-cta');
+            const contactRect = contactSection.getBoundingClientRect();
+            
+            if (contactRect.top <= window.innerHeight && contactRect.bottom >= 0) {
+                floatingCTA.style.opacity = '0';
+                floatingCTA.style.pointerEvents = 'none';
+            } else {
+                floatingCTA.style.opacity = '1';
+                floatingCTA.style.pointerEvents = 'auto';
+            }
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Service modal functionality
+        const serviceDetails = {
+           strategy: {
+                icon: ` <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                          <path d="M12 12m-11 0a11 11 0 1 0 22 0a11 11 0 1 0 -22 0"/>
+                          <g transform="rotate(25 12 12)">
+                            <path d="M12 5l2.5 5l-2.5 -1l-2.5 1z" fill="#60a5fa"/>
+                            <path d="M12 19l-2.5 -5l2.5 1l2.5 -1z" fill="#60a5fa"/>
+                          </g>
+                        </svg>`,
+                title: {
+                  fr: "Problématiques Stratégiques et Alignement Opérationnel",
+                  en: "Strategic Challenges & Operational Alignment"
+                },
+                description: {
+                  fr: "J'aide les fondateurs et dirigeants à prendre de la hauteur par rapport aux opérations pour mieux appréhender et cristalliser leur vision, tester leurs modèles et aligner leurs plans de croissance avec des objectifs concrets et mesurables. Mon approche combine diagnostic critique, projections financières et stress-testing stratégique pour anticiper les virages clés et réduire les angles morts.",
+                  en: "I help founders and executives gain perspective on operations to better understand and crystallize their vision, test their models, and align growth plans with measurable, actionable objectives. My approach combines critical diagnostics, financial projections, and strategic stress-testing to anticipate key turning points and minimize blind spots—much like a GP assessing the overall health of a business."
+                },
+                features: {
+                  fr: [
+                    "Analyse marché et veille concurrentielle",
+                    "Évaluation des risques et mitigation",
+                    "Définition des objectifs & développement de KPIs",
+                    "Planification de l’allocation des ressources",
+                    "Feuilles de route pour la mise en oeuvre",
+                    "Systèmes de pilotage de la performance et Business Intelligence"
+                  ],
+                  en: [
+                    "Market & Competitive Analysis",
+                    "SWOT Analysis & Risk Assessment",
+                    "Goal Setting & KPI Development",
+                    "Resource Allocation Planning",
+                    "Roadmaps for Implementation",
+                    "Performance Monitoring Systems"
+                  ]
+                },
+                benefits: {
+                  fr: [
+                    "Une direction éclairée",
+                    "Des processus décisionnels améliorés",
+                    "Une meilleure allocation des ressources",
+                    "Un positionnement concurrentiel renforcé"
+                  ],
+                  en: [
+                    "Clear direction for business growth",
+                    "Improved decision-making capabilities",
+                    "Better resource allocation",
+                    "Increased competitive positioning"
+                  ]
+                }
+              },
+            transition: {
+                icon: `<svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"/>
+                        </svg>`,
+                title: {
+                  fr: "Direction de Transition",
+                  en: "Interim Leadership"
+                },
+                description: {
+                  fr: "J’assume temporairement des fonctions dirigeantes clés pour aider les entreprises à traverser des phases critiques. Que ce soit pour gérer un changement, gérer une crise, mettre en place une levé de fonds ou mettre en œuvre de nouvelles stratégies, mon expérience internationale et pluridisciplinaire me permet d'agir vite et d’assurer une transition fluide et efficace pendant les périodes de transformation.",
+                  en: "I temporarily take on key executive roles to help businesses navigate critical phases. Whether it’s managing change, crisis management, raising funds, or implementing new strategies, my international and multidisciplinary experience enables me to act quickly and ensure a smooth and effective transition during periods of transformation."
+                },
+                features: {
+                  fr: [
+                    "Management de crise et gestion des risques",
+                    "Gestion du changement",
+                    "Implémentation de nouvelles stratégies",
+                    "Lien entre le CA et les opérations"
+                  ],
+                  en: [
+                    "Risk management and crisis handling",
+                    "Transformation management",
+                    "Implementation of strategic initiatives",
+                    "Swift execution on board's behalf"
+                  ]
+                },
+                benefits: {
+                  fr: [
+                    "Expérience externe",
+                    "Continuité",
+                    "Transition réfléchie et étalée dans le temps",
+                    "Stabilité organisationnelle"
+                  ],
+                  en: [
+                    "External experience",
+                    "Continuity",
+                    "Thoughtful and planned transition",
+                    "Organisational stability"
+                  ]
+                }
+              },
+            administration: {
+                icon: `<svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"/>
+                    <path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"/>
+                </svg>`,
+                title: {
+                  fr: "Conseil d'Administration",
+                  en: "Board Advisory"
+                },
+                description: {
+                  fr: "En tant qu'administrateur externe, je fournis une perspective indépendante et honnête aux conseils d’administration. Mon rôle : poser les bonnes questions, challenger les certitudes, éclairer les choix structurants, et défendre les intérêts long terme de l'entreprise.",
+                  en: "As an independent board member, I provide an honest and unbiased perspective to boards. My role is to ask the right questions, challenge assumptions, clarify strategic choices, and advocate for the company’s long-term interests."
+                },
+                features: {
+                  fr: [
+                    "Stratégie à long terme et prise de décisions",
+                    "Évaluation des risques et des opportunités",
+                    "Animation de comités de travail",
+                    "Analyse de la gouvernance et du leadership"
+                  ],
+                  en: [
+                    "Long term strategy and decision-making",
+                    "Risk and opportunity assessment",
+                    "Working committees management",
+                    "Governance and leadership evaluation"
+                  ]
+                },
+                benefits: {
+                  fr: [
+                    "Une perspective extérieure objective",
+                    "Clarté stratégique et indépendance pour la prise de décision",
+                    "Une gouvernance renforcée et alignée avec les objectifs long terme"
+                  ],
+                  en: [
+                    "An objective, external perspective",
+                    "Strategic clarity and independance decision-making",
+                    "Strengthened governance aligned with long term goals"
+                  ]
+                }
+              },
+           mentoring: {
+                icon: `<svg class="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+                        </svg>`,
+                title: {
+                  fr: "Startup Mentoring",
+                  en: "Startup Mentoring",
+                },
+                description: {
+                  fr: "Mentorat opérationnel pour fondateurs : cadrage des priorités, structuration des rituels de pilotage, préparation de levées, coaching leadership et décisions clés — avec un regard exigeant mais bienveillant.",
+                  en: "Hands-on mentoring for founders: focus and prioritization, operating cadences, fundraising prep, leadership coaching, and support on critical decisions — candid and supportive.",
+                },
+                features: {
+                  fr: [
+                    "Priorisation & cadrage des objectifs",
+                    "Rituels de pilotage & métriques",
+                    "Préparation levée de fonds (deck, métriques, récit)",
+                    "Coaching leadership & communication",
+                  ],
+                  en: [
+                    "Goal framing & prioritization",
+                    "Operating cadences & metrics",
+                    "Fundraising prep (deck, metrics, narrative)",
+                    "Leadership & communication coaching",
+                  ],
+                },
+                benefits: {
+                  fr: [
+                    "Clarté sur les priorités",
+                    "Accélération de l’exécution",
+                    "Meilleure préparation des jalons clés",
+                  ],
+                  en: [
+                    "Sharper priorities",
+                    "Faster execution",
+                    "Stronger readiness for key milestones",
+                  ],
+                },
+              },
+        };
+
+function getLang() {
+  return document.documentElement.lang || localStorage.getItem('preferredLang') || 'fr';
+}
+
+function openServiceModal(serviceType) {
+  const lang = getLang();
+  const s = serviceDetails[serviceType];
+  const modal = document.getElementById('serviceModal');
+  const modalContent = document.getElementById('modalContent');
+
+  const featuresHtml = (s.features[lang] || [])
+    .map(f => `
+      <li class="flex items-start">
+        <svg class="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"/>
+        </svg>
+        <span class="text-gray-700">${f}</span>
+      </li>`).join('');
+
+  const benefitsHtml = (s.benefits[lang] || [])
+    .map(b => `
+      <li class="flex items-start">
+        <svg class="w-5 h-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"/>
+        </svg>
+        <span class="text-gray-700">${b}</span>
+      </li>`).join('');
+
+  modalContent.innerHTML = `
+    <div class="p-8">
+      <div class="flex items-center mb-6">
+        <div class="flex items-center justify-center mr-4">
+          ${s.icon}
+        </div>
+        <h2 class="text-3xl font-bold text-gray-900">${s.title[lang]}</h2>
+      </div>
+
+      <p class="text-lg text-gray-600 mb-8">${s.description[lang]}</p>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-900">${lang === 'fr' ? "Où j'interviens:" : 'Where I come in:'}</h3>
+          <ul class="space-y-2">${featuresHtml}</ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-4 text-gray-900">${lang === 'fr' ? 'Bénéfices clés :' : 'Key Benefits:'}</h3>
+          <ul class="space-y-2">${benefitsHtml}</ul>
+        </div>
+      </div>
+
+      <div class="mt-8 p-6 bg-blue-50 rounded-lg">
+        <h4 class="text-lg font-semibold mb-3 text-blue-900">${lang === 'fr' ? 'On démarre ?' : 'Ready to get started?'}</h4>
+        <p class="text-blue-700 mb-4">
+          ${lang === 'fr'
+            ? `Planifiez une consultation pour discuter de la façon dont je peux aider.`
+            : `Schedule a consultation to discuss how I can help you.`}
+        </p>
+        <button onclick="closeServiceModal(); scrollToSection('contact');"
+          class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-300">
+          ${lang === 'fr' ? 'Allons-y !' : "Let's Go !"}
+        </button>
+      </div>
+    </div>`;
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+        function closeServiceModal() {
+            const modal = document.getElementById('serviceModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('serviceModal');
+            if (event.target === modal) {
+                closeServiceModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeServiceModal();
+            }
+        });
+
+        // Testimonial Carousel Functionality
+        let currentTestimonial = 0;
+        const totalTestimonials = 2;
+
+        function updateTestimonialCarousel() {
+            const track = document.getElementById('testimonialTrack');
+            const dots = document.querySelectorAll('.testimonial-dot');
+            
+            // Move the carousel
+            track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                if (index === currentTestimonial) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-blue-600');
+                } else {
+                    dot.classList.remove('bg-blue-600');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+
+        function nextTestimonial() {
+            currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+            updateTestimonialCarousel();
+        }
+
+        function previousTestimonial() {
+            currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+            updateTestimonialCarousel();
+        }
+
+        function goToTestimonial(index) {
+            currentTestimonial = index;
+            updateTestimonialCarousel();
+        }
+
+        // Auto-advance testimonials every 10 seconds
+        setInterval(nextTestimonial, 10000);
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'964cc3b334a9b82b',t:'MTc1MzQ1ODExNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
