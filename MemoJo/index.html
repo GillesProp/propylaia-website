@@ -295,40 +295,45 @@
 
     /* CAROUSSEL */
 
-  .carousel {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .carousel-track {
-    display: flex;
-    transition: transform 0.4s ease-in-out;
-  }
-
-  .carousel-track img {
-    width: 100%;
-    border-radius: 18px;
-    flex-shrink: 0;
-  }
-  
-  .carousel-item {
-  flex: 0 0 100%;      /* do not shrink, take 100% width */
+.carousel {
+  width: 100%;
   max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Track slides horizontally */
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease-in-out;
+}
+
+/* Each slide takes exactly 100% of the carousel width */
+.carousel-item {
+  flex: 0 0 100%;      /* no shrink, no grow, 100% width */
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
   text-align: center;
-  }
-    
+}
+
+/* Image is fully responsive inside the slide */
 .carousel-item img {
-  width: 100%;         /* image fills the slide */
+  width: 100%;
+  height: auto;
   border-radius: 18px;
   display: block;
-}   
-    
-  .caption {
-    margin-top: 16px;
-    font-size: clamp(10px,0.8vw,12px);
-    color: var(--text-mute);
-  }
+}
+
+/* Caption with some space below the image */
+.caption {
+  margin-top: 16px;
+  font-size: clamp(10px,0.8vw,12px);
+  color: var(--text-muted);  
+  word-wrap: break-word;
+}
+
   
   /* Arrow buttons */
   .carousel-arrow {
