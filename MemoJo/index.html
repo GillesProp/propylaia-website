@@ -386,7 +386,7 @@
 
     .section-grid {
       display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 0.9fr); 
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.0fr); 
       gap: 16px;
       align-items: stretch;
       flex-wrap: wrap;
@@ -480,12 +480,13 @@
     }
 
     .section-image {
-      width: 100%;              /* fills the card width */
-      height: auto;             /* keeps correct proportions */
+      width: auto;              /* fills the card width */
+      height: 50%;             /* keeps correct proportions */
       margin-top: 10px;
       border-radius: 16px;
       border: 1px solid var(--border-soft);
       object-fit: cover;        /* optional, depending on the look */
+      object-align: center;
     }
 
 
