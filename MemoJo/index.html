@@ -33,7 +33,7 @@
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
-      font-size: clamp(14px, 1.3vw, 20px);
+/*      font-size: clamp(14px, 1.3vw, 20px); */
       color: var(--text-main);
       background: linear-gradient(
         135deg,
@@ -48,6 +48,7 @@
       padding: 32px 12px 40px;
     }
       /* Slight upscale for headings */
+    
       h1, .hero-title {
         font-size: clamp(26px, 3vw, 40px);
       }
@@ -142,7 +143,7 @@
     }
 
     .logo-text-main {
-      font-size: 32px;
+      font-size: clamp(32px, 3.2vw, 42px);
       font-weight: 600;
       letter-spacing: 0.08em;
     }
@@ -402,7 +403,7 @@
     }
 
     .section-label {
-      font-size: 11px;
+     font-size: clamp(12px, 1vw, 21px);
       text-transform: uppercase;
       letter-spacing: 0.18em;
       color: var(--text-soft);
@@ -415,7 +416,7 @@
     }
 
     .section-body {
-      font-size: 13px;
+      font-size: clamp(14px, 1.25vw, 18px);
       color: var(--text-soft);
       line-height: 1.45;
     }
@@ -431,7 +432,7 @@
     }
 
     .bullet-list li {
-      font-size: 13px;
+      font-size: clamp(14px, 1.25vw, 18px);
       color: var(--text-soft);
       margin-bottom: 4px;
       display: flex;
@@ -489,7 +490,7 @@
     .pill {
       border-radius: 999px;
       border: 1px solid rgba(255,255,255,0.3);
-      font-size: 11px;
+      font-size: clamp(14px, 1.25vw, 18px);
       padding: 4px 9px;
       color: var(--text-soft);
       background: rgba(0,0,0,0.4);
