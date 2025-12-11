@@ -303,7 +303,6 @@
 
   .carousel-track {
     display: flex;
-    width: 100%;
     transition: transform 0.4s ease-in-out;
   }
 
@@ -314,13 +313,21 @@
   }
   
   .carousel-item {
-    text-align: center;      /* centers caption */
+  flex: 0 0 100%;      /* do not shrink, take 100% width */
+  max-width: 100%;
+  text-align: center;
   }
-  
+    
+.carousel-item img {
+  width: 100%;         /* image fills the slide */
+  border-radius: 18px;
+  display: block;
+}   
+    
   .caption {
     margin-top: 6px;
     font-size: clamp(10px,0.8vw,12px);
-    color: #555;             /* adjust as needed */
+    color: var(--text-soft);
   }
   
   /* Arrow buttons */
