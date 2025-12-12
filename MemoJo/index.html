@@ -42,7 +42,17 @@
       background: transparent;
     }
 
-    html, body { height: 100%; margin: 0; }
+    html, body { min-height: 100%; margin: 0; }
+
+    html {
+          background: linear-gradient(
+            135deg,
+            var(--purple-dark) 0%,
+            var(--purple-dark) 37%,
+            var(--purple-mid) 72%,
+            var(--purple-bright) 100%
+          );
+        }
     
     html::before {
       content: "";
