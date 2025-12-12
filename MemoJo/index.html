@@ -32,10 +32,18 @@
     body {
       min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-/*      font-size: clamp(14px, 1.3vw, 20px); */
+      sans-serif;
       line-height: 1.25;
       color: var(--text-main);
+      justify-content: center;
+      padding: 32px 12px 40px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
       background: linear-gradient(
         135deg,
         var(--purple-dark) 0%,
@@ -43,12 +51,7 @@
         var(--purple-mid) 72%,
         var(--purple-bright) 100%
       );
-      background-attachment: fixed;
-      display: flex;
-      justify-content: center;
-      padding: 32px 12px 40px;
     }
-
     
     .page {
       width: 1400px;
