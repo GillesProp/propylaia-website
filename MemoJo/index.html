@@ -580,7 +580,7 @@
 
       .about-grid {
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: minmax(75px, 100%) auto;
       gap: 16px;
       align-items: stretch;
       }
@@ -666,9 +666,6 @@
         grid-template-columns: 1fr;
       }
         .hero-grid {
-    grid-template-columns: 1fr;
-    }
-        .about-grid {
     grid-template-columns: 1fr;
     }
     }
