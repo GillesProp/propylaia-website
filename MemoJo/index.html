@@ -759,11 +759,19 @@
             
             <div class="carousel-track">
               <div class="carousel-item">
-              <img src="Assets/MemoJo-Cover.png" oncontextmenu="return false;" draggable="false">
+              <picture>
+                <source media="(min-width: 601px)" srcset="Assets/MemoJo-Cover.png" oncontextmenu="return false;" draggable="false">
+                <source media="(max-width: 600px)" srcset="Assets/Images_Portrait/MemoJo_Cover_Portrait_Mode.png" oncontextmenu="return false;" draggable="false">
+                <img src="Assets/MemoJo-Cover.png" oncontextmenu="return false;" draggable="false">
+              </picture>
                 <div class="caption">isn't that true?</div>              
               </div>
               <div class="carousel-item">  
+              <picture>
+                <source media="(min-width: 601px)" srcset="Assets/MemoJo_MemoLife_Setup.png" oncontextmenu="return false;" draggable="false">
+                <source media="(max-width: 600px)" srcset="Assets/MemoJo_MemoLife_Setup.png" oncontextmenu="return false;" draggable="false">
               <img src="Assets/MemoJo_MemoLife_Setup.png" oncontextmenu="return false;" draggable="false">
+              </picture>
                 <div class="caption">MemoLife wireframe</div>
               </div>              
                <div class="carousel-item"> 
