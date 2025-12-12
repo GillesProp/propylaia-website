@@ -486,6 +486,19 @@
       list-style: none;
     }
 
+    .bullet-list no {
+      font-size: clamp(14px, 1.25vw, 18px);
+      margin-bottom: 4px;
+      display: flex;
+      gap: 6px;
+    }
+
+    .bullet-list no::before {
+      content: "❌";
+      color: var(--mint);
+      margin-top: 1px;
+    }
+    
     .bullet-list li {
       font-size: clamp(14px, 1.25vw, 18px);
       margin-bottom: 4px;
@@ -859,7 +872,7 @@
       <section class="section-grid">
         <article class="card-section">
           <div class="section-label">The problem today</div>
-          <h2 class="section-title">We keep everything, but the story is lost. Our life story.</h2>
+          <h2 class="section-title">We keep everything, but <span>without context, the story is lost.</span> Our life story.</h2>
           <div class="section-body">
             <p style="margin-top:10px;">
               📜 A century ago, most people left behind a few photos and letters.
@@ -873,9 +886,9 @@
             </p>
           </div>
           <ul class="bullet-list">
-            <li>Too many files, not enough guidance.</li>
-            <li>Too much “social media persona”, not enough truth.</li>
-            <li>No single place where the story is told from the inside.</li>
+            <no>Too many files, not enough guidance.</no>
+            <no>Too much “social media persona”, not enough truth.</no>
+            <no>No single place where the story is told from the inside.</no>
           </ul>
           <img class="section-image" 
            src="Assets/MemoJo_Who_were_they.png" 
@@ -885,39 +898,6 @@
           <h3 class="section-subtitle">The result is the same...  guesswork before slowly fading to oblivion.</h3>
         </article>
 
-        <article class="card-section">
-          <div class="section-label">The wedge</div>
-          <h2 class="section-title">The hardest moment is also the clearest need.</h2>
-          <div class="section-body">
-            <p>
-              When someone dies, families are in pain and in need of answers. They do not want
-              “more content”. They want:
-            </p>
-          </div>
-          <ul class="bullet-list">
-            <he>Comfort.</he>
-            <he>A way to feel the person.</he>
-            <he>A way to hear them again.</he>
-            <he>A clear, honest story of who they were, in their own words.</he>
-            <he>Something personal they can hold in their hands.</he>
-          </ul>
-          <div class="highlight-box">
-            <strong>MemoJo’s cornerstone:</strong> <br /> 
-            <p style="margin-top:6px;">
-              This very specific moment — the loss of a loved one — is the entry point.
-            </p>
-            <p style="margin-top:6px;">It is where the need is the strongest and where a well-crafted personal memoir will make the
-            biggest difference.
-            </p>
-            <p style="margin-top:6px;">From there, we can grow to broader use cases (life reflection, therapeutic and neurological work, 
-            family history/genealogy, local archives, etc.).
-              </p>
-          </div>
-        </article>
-      </section>
-
-      <!-- WHAT MEMOJO WILL DO / JO -->
-      <section class="feel-grid">
         <article class="card-section">
           <div class="section-label">What MemoJo will do</div>
           <h2 class="section-title">In simple words: a guided path from life to posterity.</h2>
@@ -946,6 +926,39 @@
             <div class="pill">Lifetime private by design</div>
             <div class="pill">First person narrative</div>
             <div class="pill">Recipient-specific</div>
+          </div>          
+        </article>
+      </section>
+
+      <!-- WHAT MEMOJO WILL DO / JO -->
+      <section class="feel-grid">
+        <article class="card-section">
+          <div class="section-label">The wedge</div>
+          <h2 class="section-title">The hardest moment is also the clearest need.</h2>
+          <div class="section-body">
+            <p>
+              When someone dies, families are in pain and in need of answers. They do not want
+              “more content”. They want:
+            </p>
+          </div>
+          <ul class="bullet-list">
+            <he>Comfort.</he>
+            <he>A way to feel the person.</he>
+            <he>A way to hear them again.</he>
+            <he>A clear, honest story of who they were, in their own words.</he>
+            <he>Something personal they can hold in their hands.</he>
+          </ul>
+          <div class="highlight-box">
+            <strong>MemoJo’s cornerstone:</strong> <br /> 
+            <p style="margin-top:6px;">
+              This very specific moment — the loss of a loved one — is the entry point.
+            </p>
+            <p style="margin-top:6px;">It is where the need is the strongest and where a well-crafted personal memoir will make the
+            biggest difference.
+            </p>
+            <p style="margin-top:6px;">From there, we can grow to broader use cases (life reflection, therapeutic and neurological work, 
+            family history/genealogy, local archives, etc.).
+              </p>
           </div>
         </article>
 
