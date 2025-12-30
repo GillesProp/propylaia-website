@@ -780,7 +780,16 @@
         .hero-grid {
     grid-template-columns: 1fr;
     }
-.fab-menu{
+    }
+      
+@media (max-width: 400px) {
+  .about-grid img {
+    display: none;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .fab-menu{
     left: auto;
     top: 22px;
     right: 14px;
@@ -797,16 +806,6 @@
 
   .fab-panel.open{
     transform: translateY(0);
-  }
-      
-    }
-      
-@media (max-width: 400px) {
-  .about-grid img {
-    display: none;
-  }
-  .about-grid {
-    grid-template-columns: 1fr;
   }
 }
       
