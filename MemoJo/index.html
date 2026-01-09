@@ -268,6 +268,38 @@
 @media (max-width: 560px){
   .fab-panel{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Language Toggle Button  */
+.lang-toggle{
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 10000;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(20,10,40,0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.lang-btn{
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.lang-btn[aria-pressed="true"]{
+  background: rgba(255,255,255,0.14);
+}
+
     
     /* HERO */
 
@@ -830,7 +862,13 @@
   <a href="#team" class="fab-link">Team</a>
   <a href="#join" class="fab-link">Join the herd</a>
 </nav>
-  
+
+<!-- Language toggle button -->
+<div class="lang-toggle" role="group" aria-label="Language">
+  <button class="lang-btn" data-lang="en" aria-pressed="true">EN</button>
+  <button class="lang-btn" data-lang="fr" aria-pressed="false">FR</button>
+</div>
+   
   <div class="page">
     <div class="page-inner">
 
@@ -851,40 +889,80 @@
 
       <!-- HERO -->
       <section class="hero" id="hero">
-        <div class="hero-main">
-          <div class="hero-tagline">Vision first · Tech second</div>
-          <h1 class="hero-title">
-            <span>Our most precious estate to preserve is our life story.</span>
-          </h1>
-          <p class="hero-subtext">
-            MemoJo is a platform to help each person leave behind a clear, honest and comprehensive life story
-            for the people who love them, delivered when they need it most and forever accessible <em>(instead of a chaos of photos, accounts difficult to access and files that nobody
-            really knows how to use)</em>.
-          </p>
+<div class="hero-main">
 
-          <div class="hero-grid">
-            <div class="hero-chip">
-              <strong>The same pain for everyone</strong>
-              <span>
-                Sooner or later, every family goes through the same moment: the phone call, the shock,
-                and then the question — “What do we have left of them? Who were they”.<br /> 
-                Usually: a few souvenirs and a lot of digital mess.
-              </span>
-            </div>
-            <div class="hero-chip">
-              <strong>From fragments to a real memoir</strong>
-              <span>
-                MemoJo’s first mission is simple: turn a lifetime of scattered fragments into
-                a unique, meaningful recipient-specific memoir that feels emotionnaly connected — and preserved for the
-                next generations.
-              </span>
-            </div>
-          </div>
+  <div class="hero-tagline">
+    <span data-i18n="en">Vision first · Tech second</span>
+    <span data-i18n="fr">La vision d’abord · La tech ensuite</span>
+  </div>
 
-          <div class="hero-note">
-            This 1-pager is not about the technical details. It is about the vision and its inevitability.
-          </div>
-        </div>
+  <h1 class="hero-title">
+    <span data-i18n="en">Our most precious estate to preserve is our life story.</span>
+    <span data-i18n="fr">Notre patrimoine le plus précieux à préserver est notre histoire de vie.</span>
+  </h1>
+
+  <p class="hero-subtext">
+    <span data-i18n="en">
+      MemoJo is a platform to help each person leave behind a clear, honest and comprehensive life story
+      for the people who love them, delivered when they need it most and forever accessible
+      <em>(instead of a chaos of photos, accounts difficult to access and files that nobody
+      really knows how to use)</em>.
+    </span>
+    <span data-i18n="fr">
+      MemoJo est une plateforme conçue pour aider chacun à transmettre une histoire de vie claire,
+      sincère et complète aux personnes qui l’aiment, délivrée au moment où elles en ont le plus besoin
+      et accessible pour toujours
+      <em>(plutôt qu’un chaos de photos, de comptes difficiles d’accès et de fichiers que personne
+      ne sait vraiment exploiter)</em>.
+    </span>
+  </p>
+
+  <div class="hero-grid">
+    <div class="hero-chip">
+      <strong>
+        <span data-i18n="en">The same pain for everyone</span>
+        <span data-i18n="fr">Une douleur universelle</span>
+      </strong>
+      <span data-i18n="en">
+        Sooner or later, every family goes through the same moment: the phone call, the shock,
+        and then the question — “What do we have left of them? Who were they”.<br />
+        Usually: a few souvenirs and a lot of digital mess.
+      </span>
+      <span data-i18n="fr">
+        Tôt ou tard, chaque famille traverse le même moment : l’appel, le choc,
+        puis la question — « Que reste-t-il d’eux ? Qui étaient-ils ? »<br />
+        Le plus souvent : quelques souvenirs et un immense désordre numérique.
+      </span>
+    </div>
+
+    <div class="hero-chip">
+      <strong>
+        <span data-i18n="en">From fragments to a real memoir</span>
+        <span data-i18n="fr">Des fragments à un véritable récit</span>
+      </strong>
+      <span data-i18n="en">
+        MemoJo’s first mission is simple: turn a lifetime of scattered fragments into
+        a unique, meaningful recipient-specific memoir that feels emotionally connected —
+        and preserved for the next generations.
+      </span>
+      <span data-i18n="fr">
+        La première mission de MemoJo est simple : transformer une vie de fragments dispersés
+        en un récit unique, porteur de sens, pensé pour ses destinataires —
+        et préservé pour les générations suivantes.
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-note">
+    <span data-i18n="en">
+      This 1-pager is not about the technical details. It is about the vision and its inevitability.
+    </span>
+    <span data-i18n="fr">
+      Ce 1-pager ne parle pas de détails techniques. Il parle de la vision et de son évidence.
+    </span>
+  </div>
+
+</div>
 
         <!-- HERO VISUAL PLACEHOLDER -->
         <aside class="hero-visual">
@@ -1338,6 +1416,37 @@
     // Close on ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closePanel();
+    });
+  })();
+</script>
+
+  <!-- Language toggle button-->
+<script>
+  (function(){
+    const STORAGE_KEY = "memojo_lang";
+    const nodes = document.querySelectorAll("[data-i18n]");
+    const buttons = document.querySelectorAll(".lang-btn");
+
+    function applyLang(lang){
+      nodes.forEach(n => {
+        n.style.display = (n.getAttribute("data-i18n") === lang) ? "" : "none";
+      });
+      buttons.forEach(b => {
+        const isActive = b.getAttribute("data-lang") === lang;
+        b.setAttribute("aria-pressed", String(isActive));
+      });
+      document.documentElement.setAttribute("lang", lang);
+      localStorage.setItem(STORAGE_KEY, lang);
+    }
+
+    // Initial language: saved > browser preference > EN
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const browser = (navigator.language || "en").slice(0,2).toLowerCase();
+    const initial = saved || (browser === "fr" ? "fr" : "en");
+    applyLang(initial);
+
+    buttons.forEach(b => {
+      b.addEventListener("click", () => applyLang(b.getAttribute("data-lang")));
     });
   })();
 </script>
