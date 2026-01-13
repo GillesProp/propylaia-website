@@ -152,9 +152,11 @@
 .welcome-title{
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-size: 16px;
-  font-weight: 800;
+  gap: 36px;
+  font-size: 32px;
+  color: var(--text-soft);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   margin: 0 0 6px 0;
   flex-direction: column;
   align-items: center;
@@ -162,6 +164,7 @@
 }
 
 .welcome-logo{
+  gap: 12px;
   height: 270px;   
   width: auto;
   flex-shrink: 0;
@@ -184,6 +187,7 @@
 }
 
 .welcome-btn{
+  gap: 36px;
   border-radius: 999px;
   padding: 9px 12px;
   font-weight: 800;
@@ -1048,13 +1052,13 @@
         <span data-i18n="fr">De fragments à un véritable récit</span>
       </strong>
       <span data-i18n="en">
-        MemoJo’s first mission is simple: turn a lifetime of scattered fragments into
+        MemoJo’s first task is simple: turn a lifetime of scattered fragments into
         a unique, meaningful recipient-specific memoir that feels emotionally connected —
         and preserved for the next generations.
       </span>
       <span data-i18n="fr">
-        La première mission de MemoJo est simple : consolider une vie de fragments dispersés
-        en un récit unique personnalisé, porteur de sens et d'émotions, pensé pour ses destinataires et consultable pour les générations futures.
+        La première tâche de MemoJo est simple : consolider une vie de fragments dispersés
+        en un récit unique personnalisé, porteur de sens et d'émotions, pensé pour des destinataires uniques et consultable pour les générations futures.
       </span>
     </div>
   </div>
@@ -1418,7 +1422,7 @@
       <section class="bottom-grid" id="vision">
         <article class="card-section">
           <div class="section-label"> <span data-i18n="en">Long-term vision</span> <span data-i18n="fr">La Vision Long Terme</span> </div>
-          <h2 class="section-title"> <span data-i18n="en">From one family’s solace to a quiet, exhaustive Human library.</span> <span data-i18n="fr">De la fin de l'oubli pour tous, à la constitution progressive de la mémoire de l'Humanité.</span> </h2>
+          <h2 class="section-title"> <span data-i18n="en">From one family’s solace to a quiet, exhaustive Human library.</span> <span data-i18n="fr">En finir avec l'oubli, et aller vers une archive de l'Humanité.</span> </h2>
           <div class="section-body">
             <p>
               <span data-i18n="en"> <strong style="color: var(--mint)">MemoJo's first mission is SOLACE.</strong> <br /> 
@@ -1818,13 +1822,13 @@
     // Popup copy (edit freely; <br/> allowed)
     const POPUP_COPY = {
       en: {
-        title: "MemoJo",
-        body: "Your life, Your memories.<br/>Your story, Your voice.<br/>For you, your loved ones.<br/>For posterity.",
+        title: "PERSONAL MEMORY MANAGEMENT",
+        body: "Your life, Your memories.<br/>Your story, Your voice.<br/>Your experiences, your messages.<br/>For you, your loved ones.<br/>For posterity.",
         cta: "Access 1-pager"
       },
       fr: {
-        title: "MemoJo",
-        body: "Votre vie, Vos souvenirs.<br/>Votre histoire, Votre voix.<br/>Pour vous, pour vos proches.<br/>Pour la postérité.",
+        title: "PERSONAL MEMORY MANAGEMENT",
+        body: "Votre vie, Vos souvenirs.<br/>Votre histoire, Votre voix.<br/>Vos expériences, vos messages.<Br/>Pour vous, pour vos proches.<br/>Pour la postérité.",
         cta: "Voir le 1-pager"
       }
     };
