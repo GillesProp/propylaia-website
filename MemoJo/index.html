@@ -152,7 +152,7 @@
 .welcome-title{
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 12px;
   font-size: 16px;
   font-weight: 800;
   margin: 0 0 6px 0;
@@ -171,16 +171,16 @@
 
 .welcome-text{
   margin: 0 0 12px 0;
+  gap: 36px;
   font-size: 13px;
   line-height: 2;
-  color: #9be8d6;
   text-align: center;
 }
 
 .welcome-actions{
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 36px;
 }
 
 .welcome-btn{
@@ -190,7 +190,7 @@
   font-size: 12px;
   cursor: pointer;
 
-  border: 1px solid color:#9be8d6;
+  border: 1px solid #9be8d6;
   background: rgba(255,255,255,0.10);
   color: rgba(255,255,255,0.92);
 }
@@ -935,7 +935,7 @@
   <div class="welcome-backdrop" data-close="1"></div>
 
   <div class="welcome-card" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-    <h3 class="hero-title welcome-title" id="welcomeTitle">
+    <h3 class="logo-text-sub welcome-title" id="welcomeTitle">
   <img 
     src="Assets/Logo/MemoJo_logo_with_text.png" 
     alt="MemoJo"
@@ -1819,12 +1819,12 @@
     const POPUP_COPY = {
       en: {
         title: "MemoJo",
-        body: "Your life, Your contents.<br/>Your story, Your voice,<br/>For you, your loved ones,<br/>For eternity.",
+        body: "Your life, Your memories.<br/>Your story, Your voice.<br/>For you, your loved ones.<br/>For posterity.",
         cta: "Access 1-pager"
       },
       fr: {
         title: "MemoJo",
-        body: "Votre vie, Vos contenus.<br/>Votre histoire, Votre voix.<br/>Pour vous, pour vos proches.<br/>Pour l’éternité.",
+        body: "Votre vie, Vos souvenirs.<br/>Votre histoire, Votre voix.<br/>Pour vous, pour vos proches.<br/>Pour la postérité.",
         cta: "Voir le 1-pager"
       }
     };
