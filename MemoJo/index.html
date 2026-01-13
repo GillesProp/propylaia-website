@@ -133,7 +133,7 @@
 .welcome-card{
   position: absolute;
   left: 50%;
-  top: 10px;                 /* minimal gap from top */
+  top: 24px;                 /* minimal gap from top */
   transform: translateX(-50%);
   width: min(720px, calc(100vw - 20px));
   border-radius: 18px;
@@ -161,7 +161,7 @@
 }
 
 .welcome-logo{
-  height: 26px;     /* adjust to taste */
+  height: 90px;     /* adjust to taste */
   width: auto;
   flex-shrink: 0;
   filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
@@ -933,9 +933,9 @@
   <div class="welcome-backdrop" data-close="1"></div>
 
   <div class="welcome-card" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
-    <h3 class="welcome-title" id="welcomeTitle">
+    <h3 class="hero-title welcome-title" id="welcomeTitle">
   <img 
-    src="Assets/MemoJo_Logo.svg" 
+    src="Assets/MemoJo_Logo_No_Text.png" 
     alt="MemoJo"
     class="welcome-logo"
     draggable="false"
@@ -1741,12 +1741,12 @@
 
     const copy = {
       en: {
-        body: "This page is a vision one-pager. It intentionally skips deep technical details. If you want the full deck and roadmap, reach out.",
-        cta: "Got it"
+        body: "Your life,\nYour contents,\nYour voice,\nYour story,\nFor you, your loved ones,\nFor eternity."
+        cta: "Show me more."
       },
       fr: {
-        body: "Cette page est un 1-pager de vision. Elle évite volontairement les détails techniques. Pour le deck complet et la roadmap, contactez-moi.",
-        cta: "Compris"
+        body: "Votre vie,\nVos contenus,\nVotre voix,\nVotre vécu,\nPour vous, pour vos proches,\nPour toujours."
+        cta: "Montrez-moi"
       }
     };
 
