@@ -114,6 +114,88 @@
       gap: 24px;
     }
 
+    /* WELCOME POPUP */
+.welcome-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 11000;
+  display: none; /* shown via JS */
+}
+
+.welcome-modal.open{ display: block; }
+
+.welcome-backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.welcome-card{
+  position: absolute;
+  left: 50%;
+  top: 10px;                 /* minimal gap from top */
+  transform: translateX(-50%);
+  width: min(720px, calc(100vw - 20px));
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(20,10,40,0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 18px 50px rgba(0,0,0,0.45);
+
+  color: rgba(255,255,255,0.92);
+}
+
+.welcome-title{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.welcome-logo{
+  height: 26px;     /* adjust to taste */
+  width: auto;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.35));
+}
+
+
+.welcome-text{
+  margin: 0 0 12px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.86);
+}
+
+.welcome-actions{
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.welcome-btn{
+  border-radius: 999px;
+  padding: 9px 12px;
+  font-weight: 800;
+  font-size: 12px;
+  cursor: pointer;
+
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.92);
+}
+
+.welcome-btn:hover{ background: rgba(255,255,255,0.14); }
+
+    
     /* TOP BAR */
 
     .top-bar {
@@ -845,7 +927,31 @@
   
 </head>
 <body>
-  
+
+<!-- THE WELCOME POPUP -->
+<div class="welcome-modal" id="welcomeModal" aria-hidden="true">
+  <div class="welcome-backdrop" data-close="1"></div>
+
+  <div class="welcome-card" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <h3 class="welcome-title" id="welcomeTitle">
+  <img 
+    src="Assets/MemoJo_Logo.svg" 
+    alt="MemoJo"
+    class="welcome-logo"
+    draggable="false"
+  />
+  <span data-i18n-popup="title"></span>
+</h3>
+
+    <p class="welcome-text" data-i18n-popup="body"></p>
+
+    <div class="welcome-actions">
+      <button class="welcome-btn" id="welcomeCloseBtn" type="button" data-i18n-popup="cta"></button>
+    </div>
+  </div>
+</div>
+
+<!-- THE MENU BUTTON -->  
 <button class="fab-menu" id="fabMenu" aria-label="Open menu" aria-expanded="false">
   ☰
 </button>
@@ -1623,6 +1729,59 @@
 
     buttons.forEach(b => {
       b.addEventListener("click", () => applyLang(b.getAttribute("data-lang")));
+    });
+  })();
+</script>
+
+  <!-- WELCOME POPUP-->
+<script>
+  (function(){
+    // Device language (as requested): FR if browser language starts with "fr", else EN.
+    const deviceLang = ((navigator.language || "en").toLowerCase().startsWith("fr")) ? "fr" : "en";
+
+    const copy = {
+      en: {
+        body: "This page is a vision one-pager. It intentionally skips deep technical details. If you want the full deck and roadmap, reach out.",
+        cta: "Got it"
+      },
+      fr: {
+        body: "Cette page est un 1-pager de vision. Elle évite volontairement les détails techniques. Pour le deck complet et la roadmap, contactez-moi.",
+        cta: "Compris"
+      }
+    };
+
+    const modal = document.getElementById("welcomeModal");
+    const closeBtn = document.getElementById("welcomeCloseBtn");
+
+    function setText(lang){
+      modal.querySelectorAll("[data-i18n-popup]").forEach(el => {
+        const key = el.getAttribute("data-i18n-popup");
+        el.textContent = copy[lang][key] || "";
+      });
+    }
+
+    function openModal(){
+      setText(deviceLang);
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      closeBtn.focus({ preventScroll: true });
+    }
+
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+
+    // Show on every page load (opening + refreshing)
+    openModal();
+
+    // Close interactions
+    closeBtn.addEventListener("click", closeModal);
+    modal.addEventListener("click", (e) => {
+      if (e.target && e.target.dataset && e.target.dataset.close) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeModal();
     });
   })();
 </script>
