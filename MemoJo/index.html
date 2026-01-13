@@ -139,7 +139,7 @@
   transform: none;
   width: min(720px, calc(100vw - 20px));
   border-radius: 18px;
-  padding: 36px 36px 36px;
+  padding: 36px 6px;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(20,10,40,0.72);
   backdrop-filter: blur(14px);
@@ -153,13 +153,14 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: clamp(21px, 2.5vw, 32px);
+  font-size: clamp(18px, 1.2vw, 28px);;
   color: var(--text-soft);
-  letter-spacing: 0.16em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin-bottom: 16px;
 }
 
 .welcome-logo{
@@ -176,9 +177,12 @@
   font-size: 13px;
   line-height: 2;
   text-align: center;
+  margin-bottom: 16px;
 }
 
 .welcome-actions{
+  margin-top: 16px;
+  margin-bottom: 16px;
   display: flex;
   justify-content: center;
   gap: 60px;
