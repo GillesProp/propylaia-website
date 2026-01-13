@@ -139,7 +139,7 @@
   transform: none;
   width: min(720px, calc(100vw - 20px));
   border-radius: 18px;
-  padding: 16px 16px 14px;
+  padding: 36px 36px 36px;
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(20,10,40,0.72);
   backdrop-filter: blur(14px);
@@ -152,12 +152,11 @@
 .welcome-title{
   display: flex;
   align-items: center;
-  gap: 36px;
-  font-size: 32px;
+  gap: 6px;
+  font-size: clamp(21px, 2.5vw, 32px);
   color: var(--text-soft);
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin: 0 0 6px 0;
   flex-direction: column;
   align-items: center;
   text-align: center;
@@ -173,8 +172,7 @@
 
 
 .welcome-text{
-  margin: 0 0 12px 0;
-  gap: 36px;
+  gap: 60px;
   font-size: 13px;
   line-height: 2;
   text-align: center;
@@ -183,11 +181,11 @@
 .welcome-actions{
   display: flex;
   justify-content: center;
-  gap: 36px;
+  gap: 60px;
 }
 
 .welcome-btn{
-  gap: 36px;
+  gap: 60px;
   border-radius: 999px;
   padding: 9px 12px;
   font-weight: 800;
@@ -1473,8 +1471,8 @@
                 <li>Recherche de financements non dilutifs (BPI)</li> </span>
               </ul>
             <p>
-              <span data-i18n="en"> <span style="color: var(--mint)">Phase 2 | Seed readiness | August-December 2026:</span> </span>
-              <span data-i18n="fr"> <span style="color: var(--mint)">Phase 2 | Préparation Seed | Août-Décembre 2026:</span> </span>
+              <span data-i18n="en"> <span style="color: var(--mint)">Phase 2 | Seed readiness | Aug-Dec 2026:</span> </span>
+              <span data-i18n="fr"> <span style="color: var(--mint)">Phase 2 | Préparation Seed | Août-Déc 2026:</span> </span>
             </p>    
             <ul class="bullet-list">
              <span data-i18n="en"> 
@@ -1510,7 +1508,7 @@
               <li>Basic version for affordibility and trusting-issues users.</li>
               <li>Premium version for access to full AI capabilities.</li> </span>
               <span data-i18n="fr">  
-              <li>Version gratuite pour attirer les usagers et <em>tuer</em> les produits de l'océan rouge sous-jacent.</li>
+              <li>Version gratuite pour attirer les usagers et "tuer les produits de l'océan rouge sous-jacent.</li>
               <li>Version basique à niveau de prix attrayant et accéder aux usagers méfiants.</li>
               <li>Version premium avec accés à tous les services dont agents IA.</li> </span>
             </ul>
@@ -1708,110 +1706,7 @@
   })();
 </script>
 
-  <!-- Language toggle button-->
-<!--
-  <script>
-  (function(){
-    const STORAGE_KEY = "memojo_lang";
-    const nodes = document.querySelectorAll("[data-i18n]");
-    const buttons = document.querySelectorAll(".lang-btn");
-
-    function applyLang(lang){
-      nodes.forEach(n => {
-        n.style.display = (n.getAttribute("data-i18n") === lang) ? "" : "none";
-      });
-      buttons.forEach(b => {
-        const isActive = b.getAttribute("data-lang") === lang;
-        b.setAttribute("aria-pressed", String(isActive));
-      });
-      document.documentElement.setAttribute("lang", lang);
-      localStorage.setItem(STORAGE_KEY, lang);
-    }
-
-    // Initial language: saved > browser preference > EN
-    const saved = localStorage.getItem(STORAGE_KEY);
-    const browser = (navigator.language || "en").slice(0,2).toLowerCase();
-    const initial = saved || (browser === "fr" ? "fr" : "en");
-    applyLang(initial);
-
-    buttons.forEach(b => {
-      b.addEventListener("click", () => applyLang(b.getAttribute("data-lang")));
-    });
-  })();
-</script>
-
-  <!-- WELCOME POPUP-->
-<!--
-  <script>
-  (function () {
-    function initWelcomePopup() {
-      const modal = document.getElementById("welcomeModal");
-      const closeBtn = document.getElementById("welcomeCloseBtn");
-
-      // If IDs don't exist, stop quietly (prevents breaking other scripts)
-      if (!modal || !closeBtn) return;
-
-      const deviceLang =
-        ((navigator.language || "en").toLowerCase().startsWith("fr")) ? "fr" : "en";
-
-      const copy = {
-        en: {
-          title: "",
-          body: "Your life,<br/>Your contents,<br/>Your voice,<br/>Your story,<br/>For you, your loved ones,<br/>For eternity.",
-          cta: "Show me more"
-        },
-        fr: {
-          title: "Your Life",
-          body: "Votre vie,<br/>Vos contenus,<br/>Votre voix,<br/>Votre histoire,<br/>Pour vous et vos proches,<br/>Pour l’éternité.",
-          cta: "Montrez moi"
-        }
-      };
-
-      function setText(lang) {
-        modal.querySelectorAll("[data-i18n-popup]").forEach(el => {
-          const key = el.getAttribute("data-i18n-popup");
-          const val = (copy[lang] && copy[lang][key]) ? copy[lang][key] : "";
-          // Use innerHTML so <br/> works
-          el.innerHTML = val;
-        });
-      }
-
-      function openModal() {
-        setText(deviceLang);
-        modal.classList.add("open");
-        modal.setAttribute("aria-hidden", "false");
-        closeBtn.focus({ preventScroll: true });
-      }
-
-      function closeModal() {
-        modal.classList.remove("open");
-        modal.setAttribute("aria-hidden", "true");
-      }
-
-      // Open every load / refresh
-      openModal();
-
-      // Close handlers
-      closeBtn.addEventListener("click", closeModal);
-
-      modal.addEventListener("click", (e) => {
-        if (e.target && e.target.matches("[data-close]")) closeModal();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeModal();
-      });
-    }
-
-    // Ensure DOM exists even if script is moved to <head>
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", initWelcomePopup);
-    } else {
-      initWelcomePopup();
-    }
-  })();
-</script>
--->
+  <!-- Welcome pop up X Language toggle-->
   
 <script>
   (function(){
@@ -1823,12 +1718,12 @@
     const POPUP_COPY = {
       en: {
         title: "PERSONAL MEMORY MANAGEMENT",
-        body: 'Your life, <span style="color:var(--mint);">YOUR memories.</span> <br/>Your story, <span style="color:var(--mint);">YOUR voice.</span><br/>Your experiences, <span style="color:var(--mint);">YOUR messages.</span><br/>For you, <span style="color:var(--mint);">FOR YOUR loved ones.</span><br/><span style="color:var(--mint);">For posterity.</span>',
+        body: 'Your life, <span style="color:var(--mint);">Your memories.</span> <br/>Your story, <span style="color:var(--mint);">Your voice.</span><br/>Your experiences, <span style="color:var(--mint);">Your messages.</span><br/>For you, <span style="color:var(--mint);">For your loved ones.</span><br/><span style="color:var(--mint);">For posterity.</span>',
         cta: "Access 1-pager"
       },
       fr: {
         title: "PERSONAL MEMORY MANAGEMENT",
-        body: 'Votre vie, <span style="color:var(--mint);">VOS souvenirs.</span><br/>Votre histoire, <span style="color:var(--mint);">VOTRE voix.</span><br/>Vos expériences, <span style="color:var(--mint);">VOS messages.</span><br/>Pour vous, <span style="color:var(--mint);">POUR VOS proches.</span><br/><span style="color:var(--mint);">Pour la postérité.</span>',
+        body: 'Votre vie, <span style="color:var(--mint);">Vos souvenirs.</span><br/>Votre histoire, <span style="color:var(--mint);">Votre voix.</span><br/>Vos expériences, <span style="color:var(--mint);">Vos messages.</span><br/>Pour vous, <span style="color:var(--mint);">Pour vos proches.</span><br/><span style="color:var(--mint);">Pour la postérité.</span>',
         cta: "Voir le 1-pager"
       }
     };
