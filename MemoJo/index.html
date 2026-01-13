@@ -1703,7 +1703,8 @@
 </script>
 
   <!-- Language toggle button-->
-<script>
+<!--
+  <script>
   (function(){
     const STORAGE_KEY = "memojo_lang";
     const nodes = document.querySelectorAll("[data-i18n]");
@@ -1734,7 +1735,8 @@
 </script>
 
   <!-- WELCOME POPUP-->
-<script>
+<!--
+  <script>
   (function () {
     function initWelcomePopup() {
       const modal = document.getElementById("welcomeModal");
@@ -1800,6 +1802,114 @@
       document.addEventListener("DOMContentLoaded", initWelcomePopup);
     } else {
       initWelcomePopup();
+    }
+  })();
+</script>
+-->
+  
+<script>
+  (function(){
+    const STORAGE_KEY = "memojo_lang";
+    const nodes = document.querySelectorAll("[data-i18n]");
+    const buttons = document.querySelectorAll(".lang-btn");
+
+    // Popup copy (edit freely; <br/> allowed)
+    const POPUP_COPY = {
+      en: {
+        title: "MemoJO",
+        body: "Your life, Your contents.<br/>Your story, Your voice,<br/>For you, your loved ones,<br/>For eternity.",
+        cta: "Access 1-pager"
+      },
+      fr: {
+        title: "MemoJo",
+        body: "Votre vie, Vos contenus.<br/>Votre histoire, Votre voix.<br/>Pour vous, pour vos proches.<br/>Pour l’éternité.",
+        cta: "Voir le 1-pager"
+      }
+    };
+
+    function applyPopupLang(lang){
+      const modal = document.getElementById("welcomeModal");
+      if (!modal) return;
+
+      modal.querySelectorAll("[data-i18n-popup]").forEach(el => {
+        const key = el.getAttribute("data-i18n-popup");
+        const val = (POPUP_COPY[lang] && POPUP_COPY[lang][key]) ? POPUP_COPY[lang][key] : "";
+        el.innerHTML = val; // innerHTML so <br/> works
+      });
+    }
+
+    function applyLang(lang){
+      // Page content
+      nodes.forEach(n => {
+        n.style.display = (n.getAttribute("data-i18n") === lang) ? "" : "none";
+      });
+
+      // Toggle buttons UI
+      buttons.forEach(b => {
+        const isActive = b.getAttribute("data-lang") === lang;
+        b.setAttribute("aria-pressed", String(isActive));
+      });
+
+      // Global language state
+      document.documentElement.lang = lang;
+      localStorage.setItem(STORAGE_KEY, lang);
+
+      // Popup content
+      applyPopupLang(lang);
+    }
+
+    // Initial language: saved > browser preference > EN
+    const saved = localStorage.getItem(STORAGE_KEY);
+    const browser = (navigator.language || "en").slice(0,2).toLowerCase();
+    const initial = saved || (browser === "fr" ? "fr" : "en");
+    applyLang(initial);
+
+    // Language toggle clicks
+    buttons.forEach(b => {
+      b.addEventListener("click", () => applyLang(b.getAttribute("data-lang")));
+    });
+
+    // Open popup after language has been applied + DOM is ready
+    function openWelcomePopup(){
+      const modal = document.getElementById("welcomeModal");
+      const closeBtn = document.getElementById("welcomeCloseBtn");
+      if (!modal || !closeBtn) return;
+
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      closeBtn.focus({ preventScroll: true });
+
+      // Bind close handlers once
+      if (!modal.dataset.bound) {
+        modal.dataset.bound = "1";
+
+        closeBtn.addEventListener("click", () => {
+          modal.classList.remove("open");
+          modal.setAttribute("aria-hidden", "true");
+        });
+
+        modal.addEventListener("click", (e) => {
+          if (e.target && e.target.matches("[data-close]")) {
+            modal.classList.remove("open");
+            modal.setAttribute("aria-hidden", "true");
+          }
+        });
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            modal.classList.remove("open");
+            modal.setAttribute("aria-hidden", "true");
+          }
+        });
+      }
+    }
+
+    // If this script is at the end of <body>, this is fine.
+    // If it might be in <head>, DOMContentLoaded ensures the modal exists.
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", openWelcomePopup);
+    } else {
+      openWelcomePopup();
     }
   })();
 </script>
