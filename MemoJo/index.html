@@ -1735,58 +1735,75 @@
 
   <!-- WELCOME POPUP-->
 <script>
-  (function(){
-    // Device language (as requested): FR if browser language starts with "fr", else EN.
-    const deviceLang = ((navigator.language || "en").toLowerCase().startsWith("fr")) ? "fr" : "en";
+  (function () {
+    function initWelcomePopup() {
+      const modal = document.getElementById("welcomeModal");
+      const closeBtn = document.getElementById("welcomeCloseBtn");
 
-    const copy = {
-      en: {
-        title:
-        body: "Your life,\nYour contents,\nYour voice,\nYour story,\nFor you, your loved ones,\nFor eternity."
-        cta: "Show me more."
-      },
-      fr: {
-        title:
-        body: "Votre vie,\nVos contenus,\nVotre voix,\nVotre vécu,\nPour vous, pour vos proches,\nPour toujours."
-        cta: "Montrez-moi"
+      // If IDs don't exist, stop quietly (prevents breaking other scripts)
+      if (!modal || !closeBtn) return;
+
+      const deviceLang =
+        ((navigator.language || "en").toLowerCase().startsWith("fr")) ? "fr" : "en";
+
+      const copy = {
+        en: {
+          title: "",
+          body: "Your life,<br/>Your contents,<br/>Your voice,<br/>Your story,<br/>For you, your loved ones,<br/>For eternity.",
+          cta: "Show me more"
+        },
+        fr: {
+          title: "Your Life",
+          body: "Votre vie,<br/>Vos contenus,<br/>Votre voix,<br/>Votre histoire,<br/>Pour vous et vos proches,<br/>Pour l’éternité.",
+          cta: "Montrez moi"
+        }
+      };
+
+      function setText(lang) {
+        modal.querySelectorAll("[data-i18n-popup]").forEach(el => {
+          const key = el.getAttribute("data-i18n-popup");
+          const val = (copy[lang] && copy[lang][key]) ? copy[lang][key] : "";
+          // Use innerHTML so <br/> works
+          el.innerHTML = val;
+        });
       }
-    };
 
-    const modal = document.getElementById("welcomeModal");
-    const closeBtn = document.getElementById("welcomeCloseBtn");
+      function openModal() {
+        setText(deviceLang);
+        modal.classList.add("open");
+        modal.setAttribute("aria-hidden", "false");
+        closeBtn.focus({ preventScroll: true });
+      }
 
-    function setText(lang){
-      modal.querySelectorAll("[data-i18n-popup]").forEach(el => {
-        const key = el.getAttribute("data-i18n-popup");
-        el.textContent = copy[lang][key] || "";
+      function closeModal() {
+        modal.classList.remove("open");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      // Open every load / refresh
+      openModal();
+
+      // Close handlers
+      closeBtn.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", (e) => {
+        if (e.target && e.target.matches("[data-close]")) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModal();
       });
     }
 
-    function openModal(){
-      setText(deviceLang);
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-      closeBtn.focus({ preventScroll: true });
+    // Ensure DOM exists even if script is moved to <head>
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initWelcomePopup);
+    } else {
+      initWelcomePopup();
     }
-
-    function closeModal(){
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-    }
-
-    // Show on every page load (opening + refreshing)
-    openModal();
-
-    // Close interactions
-    closeBtn.addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => {
-      if (e.target && e.target.dataset && e.target.dataset.close) closeModal();
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
-    });
   })();
 </script>
+
 
 
   
