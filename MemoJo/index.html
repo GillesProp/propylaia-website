@@ -119,10 +119,14 @@
   position: fixed;
   inset: 0;
   z-index: 11000;
-  display: none; /* shown via JS */
+  display: none;
+  align-items: center;
+  justify-content: center;
 }
 
-.welcome-modal.open{ display: block; }
+.welcome-modal.open{ 
+  display: flex; 
+}
 
 .welcome-backdrop{
   position: absolute;
@@ -131,27 +135,24 @@
 }
 
 .welcome-card{
-  position: absolute;
-  left: 50%;
-  top: 24px;              
-  transform: translateX(-50%);
+  position: relative;           
+  transform: none;
   width: min(720px, calc(100vw - 20px));
   border-radius: 18px;
   padding: 16px 16px 14px;
-
   border: 1px solid rgba(255,255,255,0.18);
   background: rgba(20,10,40,0.72);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 18px 50px rgba(0,0,0,0.45);
-
   color: rgba(255,255,255,0.92);
+  text-align: center;
 }
 
 .welcome-title{
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 32px;
   font-size: 16px;
   font-weight: 800;
   margin: 0 0 6px 0;
@@ -171,13 +172,14 @@
 .welcome-text{
   margin: 0 0 12px 0;
   font-size: 13px;
-  line-height: 1.4;
-  color: rgba(255,255,255,0.86);
+  line-height: 2;
+  color: #9be8d6;
+  text-align: center;
 }
 
 .welcome-actions{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 8px;
 }
 
