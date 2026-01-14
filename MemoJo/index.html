@@ -1756,12 +1756,26 @@
       applyPopupLang(lang);
     }
 
+    function initCalendly(lang){
+    if (!window.Calendly) return;
+  
+    Calendly.initBadgeWidget({
+      url: "https://calendly.com/gilles-lazerges/45min_memojo",
+      text: (lang === "fr") ? "Rejoindre l’aventure — Échangeons." : "Join the herd — Let’s talk.",
+      color: "#9be8d6",
+      textColor: "#000000",
+      branding: false
+    });
+    }
+    
     // Initial language: saved > browser preference > EN
     const saved = localStorage.getItem(STORAGE_KEY);
     const browser = (navigator.language || "en").slice(0,2).toLowerCase();
     const initial = saved || (browser === "fr" ? "fr" : "en");
     applyLang(initial);
 
+    window.addEventListener("load", () => initCalendly(initial));
+    
     // Language toggle clicks
     buttons.forEach(b => {
       b.addEventListener("click", () => applyLang(b.getAttribute("data-lang")));
@@ -1815,8 +1829,8 @@
               <!-- Calendly badge widget begin -->
 <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
 <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gilles-lazerges/45min_memojo', text: isFR? '🐘🐘🐘 - Discutons-en':'Join the herd - Lets talk.', color: '#9be8d6', textColor: '#000000', branding: false }); }</script>
-<!-- Calendly badge widget end -->
+<!--<script type="text/javascript">window.onload = function() { Calendly.initBadgeWidget({ url: 'https://calendly.com/gilles-lazerges/45min_memojo', text: 'Join the herd - Lets talk.', color: '#9be8d6', textColor: '#000000', branding: false }); }</script>
+ Calendly badge widget end -->
 
 
 </html>
