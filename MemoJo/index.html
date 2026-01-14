@@ -1736,6 +1736,20 @@
       });
     }
 
+    function updateCalendlyBadgeText(lang){
+    const label = (lang === "fr")
+      ? "Rejoindre le 🐘🐘🐘?- Parlons en!"
+      : "Wanna join the 🐘🐘🐘? — Let’s talk.";
+  
+    // Calendly badge text usually lives here:
+    const badgeTextEl = document.querySelector(".calendly-badge-content span");
+    if (badgeTextEl) badgeTextEl.textContent = label;
+  
+    // Fallbacks (in case Calendly changes structure)
+    const badgeContent = document.querySelector(".calendly-badge-content");
+    if (badgeContent && !badgeTextEl) badgeContent.textContent = label;
+    }
+ 
     function applyLang(lang){
       // Page content
       nodes.forEach(n => {
@@ -1754,6 +1768,8 @@
 
       // Popup content
       applyPopupLang(lang);
+
+      updateCalendlyBadgeText(lang);
     }
 
     function initCalendly(lang){
@@ -1774,7 +1790,10 @@
     const initial = saved || (browser === "fr" ? "fr" : "en");
     applyLang(initial);
 
-    window.addEventListener("load", () => initCalendly(initial));
+    window.addEventListener("load", () => {
+      initCalendly(initial));
+      updateCalendlyBadgeText(initial); 
+    });
     
     // Language toggle clicks
     buttons.forEach(b => {
